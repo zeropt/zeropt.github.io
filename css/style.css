@@ -1,0 +1,141 @@
+/**
+ * style.css
+ * Author: Riley Mann
+ * 
+ * Main stylesheet for zeropt.github.io
+ * 
+ * Created on 19 Apr. 2025
+ */
+
+@font-face {
+	font-family: SimpleScript;
+	src: url("../font/Simple_Script_Wide_Lowers.ttf");
+}
+
+html {
+	height: 100%;
+}
+
+body {
+	/* Box */
+	height: calc(100% - 32px);
+	margin: 16px;
+	/* Background Image */
+	background: url("../img/dunescape.png") no-repeat center fixed;
+	background-size: cover;
+	/* Flex Container */
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: space-between;
+	align-items: stretch;
+	/* Text */
+	font-family: SimpleScript, sans-serif;
+	font-size: 0.875em; /* 14px/16=0.875em */
+}
+
+img {
+	max-width: 400px;
+	height: auto;
+}
+
+.header {
+	/* Flex Container */
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.main {
+	/* Flex Container */
+	display: flex;
+	flex-flow: row wrap-reverse;
+	justify-content: center;
+	align-items: flex-start;
+}
+
+.footer {
+	/* Flex Container */
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+	align-items: flex-end;
+}
+
+.prickly-border {
+	/* Border */
+	border: 48px solid transparent;
+	border-image: url("../img/prickly_border.png") 60 round;
+	/* Background */
+	background-color: white;
+	background-clip: padding-box;
+}
+
+.nav-menu {
+	/* Flex Container */
+	display: flex;
+	flex-flow: column wrap;
+	justify-content: flex-start;
+	align-items: stretch;
+}
+
+.nav-menu > button {
+	/* Box */
+	/*margin: 4px 0;
+	padding: 0;*/
+	/* Border */
+	border: 12px solid transparent;
+	border-image: url("../img/simple_border.png") 12 round;
+	/* Background */
+	background-color: lemonchiffon;
+	background-clip: padding-box;
+	/* Text */
+	font-family: inherit;
+	font-size: 1em; /* 16px */
+}
+
+.nav-menu > button:hover {
+	border-image: url("../img/simple_border_shadow.png") 12 round;
+	transform: translateY(-4px);
+}
+
+.nav-menu > button:active {
+	border-image: url("../img/simple_border.png") 12 round;
+	transform: translateY(0);
+}
+
+#theme-btn {
+	width: 64px;
+	height: 64px;
+	background-image: url("../img/theme_sprites.png");
+}
+
+#theme-btn.dark {
+	background-position-y: -64px;
+}
+
+#theme-btn:hover {
+	background-position-x: -64px;
+}
+
+#theme-btn:active {
+	background-position-x: 0;
+}
+
+#mute-btn {
+	width: 64px;
+	height: 64px;
+	background-image: url("../img/mute_sprites.png");
+}
+
+#mute-btn.muted {
+	background-position-y: -64px;
+}
+
+#mute-btn:hover {
+	background-position-x: -64px;
+}
+
+#mute-btn:active {
+	background-position-x: 0;
+}

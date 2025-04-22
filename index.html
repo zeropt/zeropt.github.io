@@ -3,19 +3,46 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>/ɹaɪli/</title>
+	<title>iley with an R</title>
+	<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<!-- JQuery, Marked -->
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js"
 		integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
 		crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+	<!-- Main Script -->
 	<script type="text/javascript" src="js/script.js" defer></script>
 </head>
 <body>
-	<p>Audio Test!</p>
-	<div id="content"></div>
-	<audio>
-		<source src="audio/pluck.ogg" type="audio/ogg" volume=0.4>
-	Your browser does not support the audio element.
+	<div class="header">
+		<h1 id="title-heading">iley with an R</h1>
+		<btn id="theme-btn"></btn>
+		<btn id="mute-btn"></btn>
+	</div>
+	<div class="main">
+		<img id="cactus-img" src="img/cactus.png" alt="Happy Cactus!">
+		<div id="welcome" class="prickly-border">
+			<p>
+				Welcome to my personal site where I post my projects and other fun
+				stuff.
+			</p>
+			<div class="nav-menu">
+				<button id="aboutme-btn">About Me</button><br>
+				<button id="projects-btn">Projects</button><br>
+				<button id="links-btn">Links</button><br>
+				<button id="contact-btn">Contact</button>
+			</div>
+		</div>
+		<div id="content-box" class="prickly-border"></div>
+	</div>
+	<div class="footer">
+		<p id="copyright">ⓒ 2025 Riley Mann</p>
+	</div>
+	<!-- Sound Effects -->
+	<audio id="pluck-sound">
+		<source src="audio/pluck.ogg" type="audio/ogg">
+		Your browser does not support the audio element.
 	</audio>
 </body>
 </html>
