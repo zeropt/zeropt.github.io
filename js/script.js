@@ -18,8 +18,6 @@ const settings = {
 	"muted": false
 };
 
-let welcome = true;
-
 /*-----------------------------------Setup------------------------------------*/
 
 $(document).ready(setup);
@@ -78,8 +76,7 @@ function scaleCactus() {
 }
 
 function positionCactus() {
-	const dialog = welcome ?
-		$(".welcome.prickly-border") : $(".subpage.prickly-border");
+	const dialog = $("#prickly-dialog");
 	const cwidth = $("#cactus-img").width();
 	const cactusLeft = Math.round(constrain(
 		dialog.position().left - cwidth,
@@ -143,16 +140,14 @@ function changeSubpage(locHash) {
 }
 
 function loadSubpage(locHash) {
-	welcome = false;
+	$("#content-box").empty();
 	// About me page
 	if (locHash == "#aboutme") {
-		$("#content-box").empty();
 		$("#content-box").load("pages/aboutme.html", positionCactus);
 		$(".welcome").hide();
 		$(".subpage").show();
 	// Projects page
 	} else if (locHash == "#projects") {
-		$("#content-box").empty();
 		$.get("projects/test/test.md", function(data){
 			$("#content-box").html(marked.parse(data));
 			setTimeout(positionCactus, 0);
@@ -161,21 +156,19 @@ function loadSubpage(locHash) {
 		$(".subpage").show();
 	// Links page
 	} else if (locHash == "#links") {
-		$("#content-box").empty();
 		$("#content-box").load("pages/links.html", positionCactus);
 		$(".welcome").hide();
 		$(".subpage").show();
 	// Contact page
 	} else if (locHash == "#contact") {
-		$("#content-box").empty();
 		$("#content-box").load("pages/contact.html", positionCactus);
 		$(".welcome").hide();
 		$(".subpage").show();
 	// Default to welcome page
 	} else {
-		welcome = true;
+		$("#content-box").load("pages/welcome.html", positionCactus);
+		$(".welcome").show();
 		$(".subpage").hide();
-		$(".welcome").show(0, positionCactus);
 	}
 }
 

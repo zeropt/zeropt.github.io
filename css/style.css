@@ -43,6 +43,8 @@ img {
 	height: auto;
 }
 
+/*-------------------------------Flexbox Layout-------------------------------*/
+
 .layout {
 	/* size */
 	height: 100%;
@@ -102,14 +104,6 @@ img {
 	align-items: flex-end;
 }
 
-.subpage.nav {
-	/* Flex Container */
-	display: flex;
-	flex-flow: column nowrap;
-	justify-items: flex-start;
-	align-items: flex-start;
-}
-
 .welcome.nav {
 	/* Flex Container */
 	display: flex;
@@ -118,21 +112,15 @@ img {
 	align-items: center;
 }
 
-.prickly-border {
-	/* Border */
-	border: 48px solid transparent;
-	border-image: url("../img/prickly_border.png") 60 round;
-	/* Background */
-	background-color: white;
-	background-clip: padding-box;
+.subpage.nav {
+	/* Flex Container */
+	display: flex;
+	flex-flow: column nowrap;
+	justify-items: flex-start;
+	align-items: flex-start;
 }
 
-.prickly-border.dark {
-	/* Border */
-	border-image: url("../img/prickly_border_dark.png") 60 round;
-	/* Background */
-	background-color: #262626;
-}
+/*-----------------------------Navigation Buttons-----------------------------*/
 
 .nav > button {
 	/* Box */
@@ -178,6 +166,8 @@ img {
 	border-image: url("../img/simple_border_dark.png") 12 round;
 }
 
+/*----------------------------Close Subpage Buttom----------------------------*/
+
 button.close-btn {
 	/* Box */
 	margin: 0;
@@ -203,14 +193,7 @@ button.close-btn:active {
 	transform: translateY(0);
 }
 
-.subpage.prickly-border {
-	/* Size */
-	min-height: 0;
-	max-height: 100%;
-	/* Flex Container */
-	display: flex;
-	flex-flow: column nowrap;
-}
+/*--------------------------------ID Elements---------------------------------*/
 
 #title-heading {
 	/* Box */
@@ -268,8 +251,26 @@ button.close-btn:active {
 	background-position-x: 0;
 }
 
-#cactus-img {
-	position: fixed;
+#prickly-dialog {
+	/* Size */
+	min-height: 0;
+	max-height: 100%;
+	/* Border */
+	border: 48px solid transparent;
+	border-image: url("../img/prickly_border.png") 60 round;
+	/* Background */
+	background-color: white;
+	background-clip: padding-box;
+	/* Flex Container */
+	display: flex;
+	flex-flow: column nowrap;
+}
+
+#prickly-dialog.dark {
+	/* Border */
+	border-image: url("../img/prickly_border_dark.png") 60 round;
+	/* Background */
+	background-color: #262626;
 }
 
 #content-box {
@@ -286,4 +287,12 @@ button.close-btn:active {
 	/* Text */
 	font-family: Verdana, sans-serif;
 	color: dimgray;
+}
+
+#cactus-img {
+	position: fixed;
+}
+
+#cactus-img:active {
+	transform: translateY(4px);
 }
