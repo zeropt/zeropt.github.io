@@ -39,7 +39,7 @@ body.dark {
 }
 
 img {
-	max-width: 400px;
+	max-width: 300px;
 	height: auto;
 }
 
@@ -72,7 +72,7 @@ img {
 	display: flex;
 	flex-flow: column nowrap;
 	justify-content: flex-start;
-	align-items: stretch;
+	align-items: flex-start;
 }
 
 .main {
@@ -140,18 +140,18 @@ img {
 }
 
 .nav > a:hover {
-	border-image: url("../img/simple_border_shadow.png") 12 round;
+	border-image-source: url("../img/simple_border_shadow.png");
 	transform: translateY(-4px);
 }
 
 .nav > a:active {
-	border-image: url("../img/simple_border.png") 12 round;
+	border-image-source: url("../img/simple_border.png");
 	transform: translateY(0);
 }
 
 .nav.dark > a {
 	/* Border */
-	border-image: url("../img/simple_border_dark.png") 12 round;
+	border-image-source: url("../img/simple_border_dark.png");
 	/* Background */
 	background-color: #262626;
 	/* Text */
@@ -160,11 +160,11 @@ img {
 }
 
 .nav.dark > a:hover {
-	border-image: url("../img/simple_border_dark_shadow.png") 12 round;
+	border-image-source: url("../img/simple_border_dark_shadow.png");
 }
 
 .nav.dark > a:active {
-	border-image: url("../img/simple_border_dark.png") 12 round;
+	border-image-source: url("../img/simple_border_dark.png");
 }
 
 /*----------------------------Close Subpage Buttom----------------------------*/
@@ -266,7 +266,7 @@ a.close-btn:active {
 
 #prickly-dialog.dark {
 	/* Border */
-	border-image: url("../img/prickly_border_dark.png") 60 round;
+	border-image-source: url("../img/prickly_border_dark.png");
 	/* Background */
 	background-color: #262626;
 }
@@ -280,6 +280,7 @@ a.close-btn:active {
 }
 
 #copyright {
+	z-index: 1;
 	/* Box */
 	margin: 0;
 	/* Text */
@@ -288,9 +289,100 @@ a.close-btn:active {
 }
 
 #cactus-img {
+	/* Size */
+	width: 256px;
+	height: auto;
+	/* Positioning */
 	position: fixed;
 }
 
 #cactus-img:active {
 	transform: translateY(4px);
+}
+
+/*-------------------------------Mobile Styling-------------------------------*/
+
+@media (max-width: 800px) {
+
+	body {
+		/* Text */
+		font-size: 0.75em; /* 12px/16=0.75em */
+	}
+
+	/*----------Flexbox Layout----------*/
+
+	.layout {
+		height: auto;
+		min-height: 100%;
+	}
+
+	.upper {
+		/* Flex Container */
+		flex-flow: row wrap;
+		justify-content: flex-start;
+		align-items: flex-start;
+	}
+
+	.header {
+		/* Flex Item */
+		order: 1;
+	}
+
+	.main {
+		/* Box */
+		width: 100%;
+		/* Flex Item */
+		order: 3;
+	}
+
+	.footer {
+		height: auto;
+	}
+
+	.settings {
+		/* Box */
+		padding-top: 0;
+		/* Flex Item */
+		order: 2;
+		/* Flex Container */
+		flex-flow: row wrap;
+		align-items: flex-start;
+	}
+
+	/*----------Hide Desktop Elements----------*/
+
+	.desktop, .desktop * {
+		display: none;
+	}
+
+	/*----------Close Subpage Buttom----------*/
+
+	a.close-btn {
+		/* Text */
+		font-size: 1.5em; /* 18px */
+	}
+
+	/*----------ID Elements----------*/
+
+	#theme-btn {
+		/* Box */
+		margin-right: 4px;
+	}
+
+	#prickly-dialog {
+		border-image-source: url("../img/prickly_border_mobile.png");
+	}
+
+	#prickly-dialog.dark {
+		border-image-source: url("../img/prickly_border_mobile_dark.png");
+	}
+
+	#cactus-img {
+		/* Size */
+		width: 192px;
+	}
+
+	#cactus-img:active {
+		transform: translateY(3px);
+	}
 }

@@ -7,11 +7,6 @@
  * Created on 16 Apr. 2025
  */
 
-// Constants
-const BGWIDTH = 512;
-const BGHEIGHT = 216;
-const CACTUSWIDTH = 64;
-
 // Default settings
 const settings = {
 	"theme": "light",
@@ -48,40 +43,37 @@ function setup() {
 	loadSubpage(location.hash);
 	window.onhashchange = function(){loadSubpage(location.hash);};
 	// Cactus
-	scaleCactus();
 	positionCactus();
-	$(window).resize(scaleCactus);
+	$(window).resize(positionCactus);
 }
 
 /*------------------------------Cactus Functions------------------------------*/
 
-function scaleCactus() {
-	const width = $(window).width();
-	const height = $(window).height();
-	// Calculate pixel width
-	let pixelWidth = 0.0;
-	if (width * BGHEIGHT / height > BGWIDTH)
-		pixelWidth = width / BGWIDTH; // window is wide
-	else pixelWidth = height / BGHEIGHT; // window is tall
-	// Scale cactus
-	let newCactusWidth = Math.round(CACTUSWIDTH * pixelWidth);
-	$("#cactus-img").width(newCactusWidth);
-	// Position Cactus
-	positionCactus();
-}
-
 function positionCactus() {
 	const dialog = $("#prickly-dialog");
-	const cwidth = $("#cactus-img").width();
-	const cactusLeft = Math.round(constrain(
-		dialog.position().left - cwidth,
-		0, $(window).width() - cwidth));
-	const cactusBottom = Math.round(constrain(
-		$(window).height() - dialog.position().top- dialog.height() - 0.9*cwidth,
-		0, $(window).height() - cwidth));
+	const windowW = $(window).width();
+	const windowH = $(window).height();
+	const cactusW = $("#cactus-img").width();
+	let cactusT = 0;
+	let cactusL = 0;
+	if (windowW > 800) { // desktop position
+		// Calculate new position
+		cactusT = Math.round(constrain(
+			dialog.position().top + dialog.height() - 0.1*cactusW,
+			0, windowH - cactusW));
+		cactusL = Math.round(constrain(
+			dialog.position().left - cactusW,
+			0, windowW - cactusW));
+	} else { // mobile position
+		// Caculate new position
+		cactusT = Math.round(
+			dialog.position().top + dialog.height() + 0.52*cactusW);
+		cactusL = Math.round(0.5*windowW - 0.52*cactusW);
+	}
+	// Set position
 	$("#cactus-img").css({
-		"bottom": `${cactusBottom}px`,
-		"left": `${cactusLeft}px`,
+		"top": `${cactusT}px`,
+		"left": `${cactusL}px`,
 	});
 }
 
