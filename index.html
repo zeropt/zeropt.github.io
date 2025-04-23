@@ -15,30 +15,43 @@
 	<script type="text/javascript" src="js/script.js" defer></script>
 </head>
 <body>
-	<div class="header">
-		<h1 id="title-heading">iley with an R</h1>
-		<btn id="theme-btn"></btn>
-		<btn id="mute-btn"></btn>
-	</div>
-	<div class="main">
-		<img id="cactus-img" src="img/cactus.png" alt="Happy Cactus!">
-		<div id="welcome" class="prickly-border">
-			<p>
-				Welcome to my personal site where I post my projects and other fun
-				stuff.
-			</p>
-			<div class="nav-menu">
-				<button id="aboutme-btn">About Me</button><br>
-				<button id="projects-btn">Projects</button><br>
-				<button id="links-btn">Links</button><br>
-				<button id="contact-btn">Contact</button>
+	<div class="layout">
+		<div class="upper">
+			<div class="header">
+				<h1 id="title-heading">iley with an R</h1>
+				<div class="subpage nav">
+					<button class="aboutme-btn">About Me</button>
+					<button class="projects-btn">Projects</button>
+					<button class="links-btn">Links</button>
+					<button class="contact-btn">Contact</button>
+				</div>
+			</div>
+			<div class="main">
+				<div class="welcome nav">
+					<button class="aboutme-btn">About Me</button>
+					<button class="projects-btn">Projects</button>
+					<button class="links-btn">Links</button>
+					<button class="contact-btn">Contact</button>
+				</div>
+				<p class="welcome prickly-border">
+					Welcome to my personal site where I post my projects and other fun
+					stuff.
+				</p>
+				<div class="subpage prickly-border">
+					<button class="close-btn">[x]</button>
+					<div id="content-box"></div>
+				</div>
+			</div>
+			<div class="settings">
+				<btn id="theme-btn"></btn>
+				<btn id="mute-btn"></btn>
 			</div>
 		</div>
-		<div id="content-box" class="prickly-border"></div>
+		<div class="footer">
+			<p id="copyright">ⓒ 2025 Riley Mann</p>
+		</div>
 	</div>
-	<div class="footer">
-		<p id="copyright">ⓒ 2025 Riley Mann</p>
-	</div>
+	<img id="cactus-img" src="img/cactus.png" alt="Happy Cactus!">
 	<!-- Sound Effects -->
 	<audio id="pluck-sound">
 		<source src="audio/pluck.ogg" type="audio/ogg">

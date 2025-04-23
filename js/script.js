@@ -18,6 +18,8 @@ const settings = {
 	"muted": false
 };
 
+let welcome = true;
+
 /*-----------------------------------Setup------------------------------------*/
 
 $(document).ready(setup);
@@ -28,26 +30,28 @@ function setup() {
 	else localStorage.theme = settings.theme;
 	// Theme
 	if (settings.theme == "dark") dusk();
-	// Initial rescale
-	rescale();
-	$(window).resize(rescale);
 	// Connect buttons
 	$("#theme-btn").click(toggleTheme);
 	$("#mute-btn").click(toggleMute);
-	$("#aboutme-btn").click(function(){changeSubpage("#aboutme");});
-	$("#projects-btn").click(function(){changeSubpage("#projects");});
-	$("#links-btn").click(function(){changeSubpage("#links");});
-	$("#contact-btn").click(function(){changeSubpage("#contact");});
+	$(".aboutme-btn").click(function(){changeSubpage("#aboutme");});
+	$(".projects-btn").click(function(){changeSubpage("#projects");});
+	$(".links-btn").click(function(){changeSubpage("#links");});
+	$(".contact-btn").click(function(){changeSubpage("#contact");});
+	$(".close-btn").click(closeSubpage);
 	// Load subpage
 	loadSubpage(location.hash);
 	window.onhashchange = function(){loadSubpage(location.hash);};
+	// Cactus
+	scaleCactus();
+	positionCactus();
+	$(window).resize(scaleCactus);
 }
 
-/*------------------------------Layout Functions------------------------------*/
+/*------------------------------Cactus Functions------------------------------*/
 
-function rescale() {
-	let width = $(window).width();
-	let height = $(window).height();
+function scaleCactus() {
+	const width = $(window).width();
+	const height = $(window).height();
 	// Calculate pixel width
 	let pixelWidth = 0.0;
 	if (width * BGHEIGHT / height > BGWIDTH)
@@ -56,6 +60,24 @@ function rescale() {
 	// Scale cactus
 	let newCactusWidth = Math.round(CACTUSWIDTH * pixelWidth);
 	$("#cactus-img").width(newCactusWidth);
+	// Position Cactus
+	positionCactus();
+}
+
+function positionCactus() {
+	const dialog = welcome ?
+		$(".welcome.prickly-border") : $(".subpage.prickly-border");
+	const cwidth = $("#cactus-img").width();
+	const cactusLeft = Math.round(constrain(
+		dialog.position().left - cwidth,
+		0, $(window).width() - cwidth));
+	const cactusBottom = Math.round(constrain(
+		$(window).height() - dialog.position().top- dialog.height() - 0.9*cwidth,
+		0, $(window).height() - cwidth));
+	$("#cactus-img").css({
+		"bottom": `${cactusBottom}px`,
+		"left": `${cactusLeft}px`,
+	});
 }
 
 /*-----------------------------Settings Functions-----------------------------*/
@@ -99,7 +121,7 @@ function unmute() {
 	$("#mute-btn").removeClass("muted");
 }
 
-/*--------------------------------Menu Handler--------------------------------*/
+/*---------------------------------Navigation---------------------------------*/
 
 function changeSubpage(locHash) {
 	playSound();
@@ -107,27 +129,44 @@ function changeSubpage(locHash) {
 }
 
 function loadSubpage(locHash) {
-	// Clear content box
-	$("#content-box").empty();
-	$("#content-box").show();
-	// Load content
+	welcome = false;
 	// About me page
 	if (locHash == "#aboutme") {
-		$("#content-box").load("pages/aboutme.html");
+		$("#content-box").empty();
+		$("#content-box").load("pages/aboutme.html", positionCactus);
+		$(".welcome").hide();
+		$(".subpage").show();
 	// Projects page
 	} else if (locHash == "#projects") {
+		$("#content-box").empty();
 		$.get("projects/test/test.md", function(data){
 			$("#content-box").html(marked.parse(data));
+			setTimeout(positionCactus, 0);
 		});
+		$(".welcome").hide();
+		$(".subpage").show();
 	// Links page
 	} else if (locHash == "#links") {
-		$("#content-box").load("pages/links.html");
+		$("#content-box").empty();
+		$("#content-box").load("pages/links.html", positionCactus);
+		$(".welcome").hide();
+		$(".subpage").show();
 	// Contact page
 	} else if (locHash == "#contact") {
-		$("#content-box").load("pages/contact.html");
+		$("#content-box").empty();
+		$("#content-box").load("pages/contact.html", positionCactus);
+		$(".welcome").hide();
+		$(".subpage").show();
+	// Default to welcome page
 	} else {
-		$("#content-box").hide();
+		welcome = true;
+		$(".subpage").hide();
+		$(".welcome").show(0, positionCactus);
 	}
+}
+
+function closeSubpage() {
+	location.hash = "#welcome";
 }
 
 /*--------------------------------More Actions--------------------------------*/
@@ -138,4 +177,9 @@ function playSound() {
 		sound.load();
 		sound.play();
 	}
+}
+
+// Returns x constrained between a and b
+function constrain(x, a, b) {
+	return Math.max(Math.min(x, b), a);
 }
