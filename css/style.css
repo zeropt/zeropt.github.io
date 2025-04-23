@@ -255,7 +255,7 @@ a.close-btn:active {
 	max-height: 100%;
 	/* Border */
 	border: 48px solid transparent;
-	border-image: url("../img/prickly_border.png") 60 round;
+	border-image: url("../img/prickly_border.png") 48 round;
 	/* Background */
 	background-color: white;
 	background-clip: padding-box;
