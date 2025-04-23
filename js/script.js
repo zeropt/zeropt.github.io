@@ -38,6 +38,19 @@ function setup() {
 	$(".links-btn").click(function(){changeSubpage("#links");});
 	$(".contact-btn").click(function(){changeSubpage("#contact");});
 	$(".close-btn").click(closeSubpage);
+	// Attach Sounds
+	$(".click1").mouseover(function(){playSound("#click1-hover");});
+	$(".click1").mousedown(function(){playSound("#click1-press");});
+	$(".click1").mouseup(function(){
+		setTimeout(playSound, 0, "#click1-release");});
+	$(".click2").mouseover(function(){playSound("#click1-hover");});
+	$(".click2").mousedown(function(){playSound("#click2-press");});
+	$(".click2").mouseup(function(){
+		setTimeout(playSound, 0, "#click2-release");});
+	$(".click3").mouseover(function(){playSound("#click1-hover");});
+	$(".click3").mousedown(function(){playSound("#click3-press");});
+	$(".click3").mouseup(function(){
+		setTimeout(playSound, 0, "#click3-release");});
 	// Load subpage
 	loadSubpage(location.hash);
 	window.onhashchange = function(){loadSubpage(location.hash);};
@@ -124,7 +137,6 @@ function unmute() {
 /*---------------------------------Navigation---------------------------------*/
 
 function changeSubpage(locHash) {
-	playSound();
 	location.hash = locHash;
 }
 
@@ -171,9 +183,9 @@ function closeSubpage() {
 
 /*--------------------------------More Actions--------------------------------*/
 
-function playSound() {
+function playSound(id) {
 	if (!settings.muted) {
-		const sound = $("#pluck-sound")[0];
+		const sound = $(id)[0];
 		sound.load();
 		sound.play();
 	}

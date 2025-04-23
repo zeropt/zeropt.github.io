@@ -20,31 +20,31 @@
 			<div class="header">
 				<h1 id="title-heading">iley with an R</h1>
 				<div class="subpage nav">
-					<button class="aboutme-btn">About Me</button>
-					<button class="projects-btn">Projects</button>
-					<button class="links-btn">Links</button>
-					<button class="contact-btn">Contact</button>
+					<button class="aboutme-btn click1">About Me</button>
+					<button class="projects-btn click1">Projects</button>
+					<button class="links-btn click1">Links</button>
+					<button class="contact-btn click1">Contact</button>
 				</div>
 			</div>
 			<div class="main">
 				<div class="welcome nav">
-					<button class="aboutme-btn">About Me</button>
-					<button class="projects-btn">Projects</button>
-					<button class="links-btn">Links</button>
-					<button class="contact-btn">Contact</button>
+					<button class="aboutme-btn click1">About Me</button>
+					<button class="projects-btn click1">Projects</button>
+					<button class="links-btn click1">Links</button>
+					<button class="contact-btn click1">Contact</button>
 				</div>
 				<p class="welcome prickly-border">
-					Welcome to my personal site where I post my projects and other fun
-					stuff.
+					Welcome to my personal site where I post my projects and other
+					fun stuff.
 				</p>
 				<div class="subpage prickly-border">
-					<button class="close-btn">[x]</button>
+					<button class="close-btn click3">[x]</button>
 					<div id="content-box"></div>
 				</div>
 			</div>
 			<div class="settings">
-				<btn id="theme-btn"></btn>
-				<btn id="mute-btn"></btn>
+				<btn id="theme-btn" class="click2"></btn>
+				<btn id="mute-btn" class="click1"></btn>
 			</div>
 		</div>
 		<div class="footer">
@@ -53,8 +53,39 @@
 	</div>
 	<img id="cactus-img" src="img/cactus.png" alt="Happy Cactus!">
 	<!-- Sound Effects -->
-	<audio id="pluck-sound">
-		<source src="audio/pluck.ogg" type="audio/ogg">
+	<audio id="click1-hover">
+		<source src="sound/click1_hover.ogg" type="audio/ogg">
+		<source src="sound/click1_hover.mp3" type="audio/mpeg">
+		Your browser does not support the audio element.
+	</audio>
+	<audio id="click1-press">
+		<source src="sound/click1_press.ogg" type="audio/ogg">
+		<source src="sound/click1_press.mp3" type="audio/mpeg">
+		Your browser does not support the audio element.
+	</audio>
+	<audio id="click1-release">
+		<source src="sound/click1_release.ogg" type="audio/ogg">
+		<source src="sound/click1_release.mp3" type="audio/mpeg">
+		Your browser does not support the audio element.
+	</audio>
+	<audio id="click2-press">
+		<source src="sound/click2_press.ogg" type="audio/ogg">
+		<source src="sound/click2_press.mp3" type="audio/mpeg">
+		Your browser does not support the audio element.
+	</audio>
+	<audio id="click2-release">
+		<source src="sound/click2_release.ogg" type="audio/ogg">
+		<source src="sound/click2_release.mp3" type="audio/mpeg">
+		Your browser does not support the audio element.
+	</audio>
+	<audio id="click3-press">
+		<source src="sound/click3_press.ogg" type="audio/ogg">
+		<source src="sound/click3_press.mp3" type="audio/mpeg">
+		Your browser does not support the audio element.
+	</audio>
+	<audio id="click3-release">
+		<source src="sound/click3_release.ogg" type="audio/ogg">
+		<source src="sound/click3_release.mp3" type="audio/mpeg">
 		Your browser does not support the audio element.
 	</audio>
 </body>
