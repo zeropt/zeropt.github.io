@@ -122,7 +122,7 @@ img {
 
 /*-----------------------------Navigation Buttons-----------------------------*/
 
-.nav > button {
+.nav > a {
 	/* Box */
 	margin: 4px 4px;
 	padding: 4px 32px;
@@ -136,19 +136,20 @@ img {
 	font-family: inherit;
 	font-size: 1.25em; /* 20px */
 	color: inherit;
+	text-decoration: none;
 }
 
-.nav > button:hover {
+.nav > a:hover {
 	border-image: url("../img/simple_border_shadow.png") 12 round;
 	transform: translateY(-4px);
 }
 
-.nav > button:active {
+.nav > a:active {
 	border-image: url("../img/simple_border.png") 12 round;
 	transform: translateY(0);
 }
 
-.nav.dark > button {
+.nav.dark > a {
 	/* Border */
 	border-image: url("../img/simple_border_dark.png") 12 round;
 	/* Background */
@@ -158,24 +159,20 @@ img {
 	font-weight: bold;
 }
 
-.nav.dark > button:hover {
+.nav.dark > a:hover {
 	border-image: url("../img/simple_border_dark_shadow.png") 12 round;
 }
 
-.nav.dark > button:active {
+.nav.dark > a:active {
 	border-image: url("../img/simple_border_dark.png") 12 round;
 }
 
 /*----------------------------Close Subpage Buttom----------------------------*/
 
-button.close-btn {
+a.close-btn {
 	/* Box */
 	margin: 0;
 	padding: 0;
-	/* Border */
-	border-width: 0;
-	/* Background */
-	background-color: transparent;
 	/* Flex Item */
 	align-self: flex-end;
 	/* Text */
@@ -183,13 +180,14 @@ button.close-btn {
 	font-size: 1em; /* 16px */
 	font-weight: bold;
 	color: inherit;
+	text-decoration: none;
 }
 
-button.close-btn:hover {
+a.close-btn:hover {
 	transform: translateY(-4px);
 }
 
-button.close-btn:active {
+a.close-btn:active {
 	transform: translateY(0);
 }
 

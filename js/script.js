@@ -31,11 +31,6 @@ function setup() {
 	// Connect buttons
 	$("#theme-btn").click(toggleTheme);
 	$("#mute-btn").click(toggleMute);
-	$(".aboutme-btn").click(function(){changeSubpage("#aboutme");});
-	$(".projects-btn").click(function(){changeSubpage("#projects");});
-	$(".links-btn").click(function(){changeSubpage("#links");});
-	$(".contact-btn").click(function(){changeSubpage("#contact");});
-	$(".close-btn").click(closeSubpage);
 	// Attach Sounds
 	$(".click1").mouseover(function(){playSound("#click1-hover");});
 	$(".click1").mousedown(function(){playSound("#click1-press");});
@@ -135,10 +130,6 @@ function unmute() {
 
 /*---------------------------------Navigation---------------------------------*/
 
-function changeSubpage(locHash) {
-	location.hash = locHash;
-}
-
 function loadSubpage(locHash) {
 	$("#content-box").empty();
 	// About me page
@@ -170,10 +161,6 @@ function loadSubpage(locHash) {
 		$(".welcome").show();
 		$(".subpage").hide();
 	}
-}
-
-function closeSubpage() {
-	location.hash = "#welcome";
 }
 
 /*--------------------------------More Actions--------------------------------*/
