@@ -16,10 +16,15 @@ html {
 	/* Size */
 	height: 100%;
 	/* Background */
+	background: url("../img/dunescape.png") no-repeat center fixed;
+	background-size: cover;
 	background-color: white;
 }
 
 html.dark {
+	/* Background */
+	background: url("../img/dunescape_dark.png") no-repeat center fixed;
+	background-size: cover;
 	background-color: black;
 }
 
@@ -28,9 +33,6 @@ body {
 	height: 100%;
 	/* Box */
 	margin: 0;
-	/* Background Image */
-	background: url("../img/dunescape.png") no-repeat center fixed;
-	background-size: cover;
 	/* Text */
 	font-family: SimpleScript, sans-serif;
 	font-size: 0.875em; /* 14px/16=0.875em */
@@ -38,9 +40,6 @@ body {
 }
 
 body.dark {
-	/* Background Image */
-	background: url("../img/dunescape_dark.png") no-repeat center fixed;
-	background-size: cover;
 	/* Text */
 	color: lavenderblush;
 }
