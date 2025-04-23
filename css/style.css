@@ -27,6 +27,15 @@ body {
 	/* Text */
 	font-family: SimpleScript, sans-serif;
 	font-size: 0.875em; /* 14px/16=0.875em */
+	color: black;
+}
+
+body.dark {
+	/* Background Image */
+	background: url("../img/dunescape_dark.png") no-repeat center fixed;
+	background-size: cover;
+	/* Text */
+	color: lavenderblush;
 }
 
 img {
@@ -118,6 +127,13 @@ img {
 	background-clip: padding-box;
 }
 
+.prickly-border.dark {
+	/* Border */
+	border-image: url("../img/prickly_border_dark.png") 60 round;
+	/* Background */
+	background-color: #262626;
+}
+
 .nav > button {
 	/* Box */
 	margin: 4px 4px;
@@ -131,6 +147,7 @@ img {
 	/* Text */
 	font-family: inherit;
 	font-size: 1em; /* 16px */
+	color: inherit;
 }
 
 .nav > button:hover {
@@ -141,6 +158,21 @@ img {
 .nav > button:active {
 	border-image: url("../img/simple_border.png") 12 round;
 	transform: translateY(0);
+}
+
+.nav.dark > button {
+	/* Border */
+	border-image: url("../img/simple_border_dark.png") 12 round;
+	/* Background */
+	background-color: #262626;
+}
+
+.nav.dark > button:hover {
+	border-image: url("../img/simple_border_dark_shadow.png") 12 round;
+}
+
+.nav.dark > button:active {
+	border-image: url("../img/simple_border_dark.png") 12 round;
 }
 
 button.close-btn {
@@ -157,6 +189,7 @@ button.close-btn {
 	font-family: inherit;
 	font-size: 1em; /* 16px */
 	font-weight: bold;
+	color: inherit;
 }
 
 button.close-btn:hover {
@@ -213,6 +246,11 @@ button.close-btn:active {
 	margin: 4px 8px;
 	/* Sprite Sheet */
 	background-image: url("../img/mute_sprites.png");
+}
+
+#mute-btn.dark {
+	/* Sprite Sheet */
+	background-image: url("../img/mute_sprites_dark.png");
 }
 
 #mute-btn.muted {

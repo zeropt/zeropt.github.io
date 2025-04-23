@@ -109,11 +109,13 @@ function toggleTheme() {
 }
 
 function dawn() {
-	$("#theme-btn").removeClass("dark");
+	$(".themed").removeClass("dark");
+	$("#cactus-img").attr("src", "img/cactus.png");
 }
 
 function dusk() {
-	$("#theme-btn").addClass("dark");
+	$(".themed").addClass("dark");
+	$("#cactus-img").attr("src", "img/cactus_dark.png");
 }
 
 function toggleMute() {
