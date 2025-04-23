@@ -29,16 +29,14 @@ function setup() {
 	// Attach Sounds
 	$(".click1").mouseover(function(){playSound("#click1-hover");});
 	$(".click1").mousedown(function(){playSound("#click1-press");});
-	$(".click1").mouseup(function(){
-		setTimeout(playSound, 0, "#click1-release");});
+	$(".click1").mouseup(function(){playSound("#click1-release");});
 	$(".click2").mouseover(function(){playSound("#click1-hover");});
 	$(".click2").mousedown(function(){playSound("#click2-press");});
-	$(".click2").mouseup(function(){
-		setTimeout(playSound, 0, "#click2-release");});
+	$(".click2").mouseup(function(){playSound("#click2-release");});
 	$(".click3").mouseover(function(){playSound("#click1-hover");});
 	$(".click3").mousedown(function(){playSound("#click3-press");});
-	$(".click3").mouseup(function(){
-		setTimeout(playSound, 0, "#click3-release");});
+	$(".click3").mouseup(function(){playSound("#click3-release");});
+	$("#mute-btn").mouseover(function(){playSound("#click1-hover");});
 	// Load subpage
 	loadSubpage(location.hash);
 	window.onhashchange = function(){loadSubpage(location.hash);};
@@ -117,6 +115,7 @@ function mute() {
 }
 
 function unmute() {
+	playSound("#click1-release");
 	$("#mute-btn").removeClass("muted");
 }
 
