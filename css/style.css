@@ -18,14 +18,14 @@ html {
 	/* Background */
 	background: url("../img/dunescape.png") no-repeat center fixed;
 	background-size: cover;
-	background-color: white;
+	background-color: lemonchiffon;
 }
 
 html.dark {
 	/* Background */
 	background: url("../img/dunescape_dark.png") no-repeat center fixed;
 	background-size: cover;
-	background-color: black;
+	background-color: #262626;
 }
 
 body {
@@ -122,7 +122,7 @@ img {
 	/* Flex Container */
 	display: flex;
 	flex-flow: column nowrap;
-	justify-items: flex-start;
+	justify-content: flex-start;
 	align-items: flex-start;
 }
 
@@ -173,14 +173,20 @@ img {
 	border-image-source: url("../img/simple_border_dark.png");
 }
 
-/*----------------------------Close Subpage Buttom----------------------------*/
+/*----------------------------Close & Back Buttons----------------------------*/
 
-a.close-btn {
+.exit-bar {
+	/* Flex Container */
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: flex-end;
+	align-items: flex-start;
+}
+
+.exit-bar > a {
 	/* Box */
-	margin: 0;
+	margin: 0 0 0 8px;
 	padding: 0;
-	/* Flex Item */
-	align-self: flex-end;
 	/* Text */
 	font-family: inherit;
 	font-size: 1em; /* 16px */
@@ -189,12 +195,66 @@ a.close-btn {
 	text-decoration: none;
 }
 
-a.close-btn:hover {
+.exit-bar > a:hover {
 	transform: translateY(-4px);
 }
 
-a.close-btn:active {
+.exitbar > a:active {
 	transform: translateY(0);
+}
+
+/*--------------------------------Project Menu--------------------------------*/
+
+#projects {
+	/* Flex Container */
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: flex-start;
+	align-items: stretch;
+}
+
+#projects > a {
+	/* Box */
+	margin: 4px 4px;
+	padding: 4px 32px;
+	/* Border */
+	border: 12px solid transparent;
+	border-image: url("../img/simple_border.png") 12 round;
+	/* Background */
+	background-color: lemonchiffon;
+	background-clip: padding-box;
+	/* Text */
+	font-family: inherit;
+	color: inherit;
+	text-decoration: none;
+}
+
+#projects > a:hover {
+	border-image-source: url("../img/simple_border_shadow.png");
+	transform: translateY(-4px);
+}
+
+#projects > a:active {
+	border-image-source: url("../img/simple_border.png");
+	transform: translateY(0);
+}
+
+#projects.dark > a {
+	/* Border */
+	border-image-source: url("../img/simple_border_dark.png");
+	/* Background */
+	background-color: #262626;
+	/* Text */
+	color: lemonchiffon;
+/*	font-weight: bold;*/
+}
+
+#projects.dark > a:hover {
+	border-image-source: url("../img/simple_border_dark_shadow.png");
+}
+
+#projects.dark > a:active {
+	border-image-source: url("../img/simple_border_dark.png");
 }
 
 /*--------------------------------ID Elements---------------------------------*/
@@ -361,9 +421,17 @@ a.close-btn:active {
 		display: none;
 	}
 
-	/*----------Close Subpage Buttom----------*/
+	/*----------Close & Back Buttons----------*/
 
-	a.close-btn {
+	.exit-bar {
+		/* Flex Container */
+		flex-direction: row-reverse;
+		justify-content: space-between;
+	}
+
+	.exit-bar > a {
+		/* Box */
+		margin-left: 0;
 		/* Text */
 		font-size: 1.5em; /* 18px */
 	}
