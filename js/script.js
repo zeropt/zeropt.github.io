@@ -7,44 +7,68 @@
  * Created on 16 Apr. 2025
  */
 
-// Default settings
-const settings = {
-	"theme": "light",
-	"muted": false
-};
-
-// Project paths
+// Paths and variables for automatic project loading
 const projectDir = "projects/";
 const projectListPath = "projects/projectlist.json";
 
-const projectIDs = [];
+// Global data
+const data = {
+	settings: { // default settings
+		theme: "light",
+		muted: false
+	},
+	projectIDs: [] // to be populated later
+};
+
+// Create howler sprites
+const sounds = new Howl({
+	src: ["../sound/sprites.ogg", "../sound/sprites.mp3"],
+	sprite: {
+		hover: [0, 99],
+		click0Down: [100, 99],
+		click0Up: [200, 99],
+		click1Down: [300, 99],
+		click1Up: [400, 99],
+		click2Down: [500, 99],
+		click2Up: [600, 99],
+		bubble0: [700, 99],
+		bubble1: [800, 99]
+	}
+});
+
+const spriteVolume = {
+	hover: 1.0,
+	click0Down: 1.0,
+	click0Up: 1.0,
+	click1Down: 0.6,
+	click1Up: 0.6,
+	click2Down: 0.4,
+	click2Up: 0.4,
+	bubble0: 0.2,
+	bubble1: 0.2
+};
 
 /*-----------------------------------Setup------------------------------------*/
 
 $(document).ready(setup);
 
+// Runs once when the document is ready
 function setup() {
+	// Howler
+	sounds.once("load", function(){
+		console.log("Sound sprites loaded!");
+	});
+	sounds.once("loaderror", function(){
+		console.log("Sound sprites failed to load!");
+	});
+
 	// Build project menu before anything else
 	buildProjectMenu(function(){
-		// Local storage
-		if (localStorage.theme) settings.theme = localStorage.theme;
-		else localStorage.theme = settings.theme;
-		// Theme
-		if (settings.theme == "dark") dusk();
+		setupTheme();
+		attachSounds();
 		// Connect buttons
 		$("#theme-btn").click(toggleTheme);
 		$("#mute-btn").click(toggleMute);
-		// Attach Sounds
-		$(".click1").mouseover(function(){playSound("#click1-hover");});
-		$(".click1").mousedown(function(){playSound("#click1-press");});
-		$(".click1").mouseup(function(){playSound("#click1-release");});
-		$(".click2").mouseover(function(){playSound("#click1-hover");});
-		$(".click2").mousedown(function(){playSound("#click2-press");});
-		$(".click2").mouseup(function(){playSound("#click2-release");});
-		$(".click3").mouseover(function(){playSound("#click1-hover");});
-		$(".click3").mousedown(function(){playSound("#click3-press");});
-		$(".click3").mouseup(function(){playSound("#click3-release");});
-		$("#mute-btn").mouseover(function(){playSound("#click1-hover");});
 		// Load page
 		loadPage(location.hash);
 		window.onhashchange = function(){loadPage(location.hash);};
@@ -54,6 +78,31 @@ function setup() {
 	}, function(){
 		$("body").html("error building project menu")
 	});
+}
+
+
+// Sets the theme variable using local storage or sets local storage if not
+// already set and set initial site theme
+function setupTheme() {
+	if (localStorage.theme) data.settings.theme = localStorage.theme;
+	else localStorage.theme = data.settings.theme;
+	// Configure dark theme if so
+	if (data.settings.theme == "dark") dusk();
+}
+
+// Connects sounds to button events
+function attachSounds() {
+	$(".click0").mouseover(function(){playSprite("hover");});
+	$(".click0").mousedown(function(){playSprite("click0Down");});
+	$(".click0").mouseup(function(){playSprite("click0Up");});
+	$(".click1").mousedown(function(){playSprite("click1Down");});
+	$(".click1").mouseup(function(){playSprite("click1Up");});
+	$(".click2").mouseover(function(){playSprite("hover");});
+	$(".click2").mousedown(function(){playSprite("click2Down");});
+	$(".click2").mouseup(function(){playSprite("click2Up");});
+	$("#mute-btn").mouseover(function(){playSprite("hover");});
+	$("#cactus-img").mousedown(function(){playSprite("bubble0");});
+	$("#cactus-img").mouseup(function(){playSprite("bubble1");});
 }
 
 /*------------------------------Cactus Functions------------------------------*/
@@ -90,15 +139,15 @@ function positionCactus() {
 
 function toggleTheme() {
 	// Toggle setting
-	if (settings.theme == "dark") {
-		settings.theme = "light";
+	if (data.settings.theme == "dark") {
+		data.settings.theme = "light";
 		dawn();
 	} else {
-		settings.theme = "dark";
+		data.settings.theme = "dark";
 		dusk();
 	}
 	// Set local storage
-	localStorage.theme = settings.theme;
+	localStorage.theme = data.settings.theme;
 }
 
 function dawn() {
@@ -112,11 +161,11 @@ function dusk() {
 }
 
 function toggleMute() {
-	if (settings.muted) {
-		settings.muted = false;
+	if (data.settings.muted) {
+		data.settings.muted = false;
 		unmute();
 	} else {
-		settings.muted = true;
+		data.settings.muted = true;
 		mute();
 	}
 }
@@ -126,7 +175,7 @@ function mute() {
 }
 
 function unmute() {
-	playSound("#click1-release");
+	playSprite("click0Down");
 	$("#mute-btn").removeClass("muted");
 }
 
@@ -136,11 +185,11 @@ function buildProjectMenu(successCallback, failureCallback) {
 	$.getJSON(projectListPath, function(result){
 		for (let i = 0; i < result.projects.length; i++) {
 			// Update project IDs list
-			projectIDs.push(result.projects[i].id);
+			data.projectIDs.push(result.projects[i].id);
 			// Build menu
 			const project = $("<a>")
 				.attr("href", "#project-" + result.projects[i].id)
-				.addClass("click1")
+				.addClass("click0")
 				.text(result.projects[i].title);
 			$("#projects").append(project);
 		}
@@ -185,7 +234,7 @@ function loadPage(locHash) {
 	} else {
 		// Load project
 		const projectID = locHash.replace("#project-", "");
-		if (projectIDs.includes(projectID)) {
+		if (data.projectIDs.includes(projectID)) {
 			$(".back-btn").attr("href", "#projects");
 			$(".welcome").hide();
 			$(".subpage").show();
@@ -226,11 +275,11 @@ function loadProject(projectID, successCallback, failureCallback) {
 
 /*--------------------------------More Actions--------------------------------*/
 
-function playSound(id) {
-	if (!settings.muted) {
-		const sound = $(id)[0];
-		sound.load();
-		sound.play();
+function playSprite(sprite) {
+	if (!data.settings.muted) {
+		sounds.stop();
+		const id = sounds.play(sprite);
+		sounds.volume(spriteVolume[sprite], id);
 	}
 }
 

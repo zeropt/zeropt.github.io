@@ -131,7 +131,7 @@ img {
 .nav > a {
 	/* Box */
 	margin: 4px 4px;
-	padding: 4px 32px;
+	padding: 8px 32px 0 32px;
 	/* Border */
 	border: 12px solid transparent;
 	border-image: url("../img/simple_border.png") 12 round;
@@ -146,13 +146,15 @@ img {
 }
 
 .nav > a:hover {
-	border-image-source: url("../img/simple_border_shadow.png");
-	transform: translateY(-4px);
+	padding-top: 4px;
+	padding-bottom: 4px;
+	border-image-source: url("../img/simple_border_raised.png");
 }
 
 .nav > a:active {
+	padding-top: 8px;
+	padding-bottom: 0;
 	border-image-source: url("../img/simple_border.png");
-	transform: translateY(0);
 }
 
 .nav.dark > a {
@@ -166,7 +168,7 @@ img {
 }
 
 .nav.dark > a:hover {
-	border-image-source: url("../img/simple_border_dark_shadow.png");
+	border-image-source: url("../img/simple_border_dark_raised.png");
 }
 
 .nav.dark > a:active {
@@ -186,7 +188,7 @@ img {
 .exit-bar > a {
 	/* Box */
 	margin: 0 0 0 8px;
-	padding: 0;
+	padding: 4px 0 0 0;
 	/* Text */
 	font-family: inherit;
 	font-size: 1em; /* 16px */
@@ -196,11 +198,13 @@ img {
 }
 
 .exit-bar > a:hover {
-	transform: translateY(-4px);
+	padding-top: 0;
+	padding-bottom: 4px;
 }
 
 .exitbar > a:active {
-	transform: translateY(0);
+	padding-top: 4px;
+	padding-bottom: 0;
 }
 
 /*--------------------------------Project Menu--------------------------------*/
@@ -216,7 +220,7 @@ img {
 #projects > a {
 	/* Box */
 	margin: 4px 4px;
-	padding: 4px 32px;
+	padding: 8px 32px 0 32px;
 	/* Border */
 	border: 12px solid transparent;
 	border-image: url("../img/simple_border.png") 12 round;
@@ -230,13 +234,15 @@ img {
 }
 
 #projects > a:hover {
-	border-image-source: url("../img/simple_border_shadow.png");
-	transform: translateY(-4px);
+	padding-top: 4px;
+	padding-bottom: 4px;
+	border-image-source: url("../img/simple_border_raised.png");
 }
 
 #projects > a:active {
+	padding-top: 8px;
+	padding-bottom: 0;
 	border-image-source: url("../img/simple_border.png");
-	transform: translateY(0);
 }
 
 #projects.dark > a {
@@ -250,7 +256,7 @@ img {
 }
 
 #projects.dark > a:hover {
-	border-image-source: url("../img/simple_border_dark_shadow.png");
+	border-image-source: url("../img/simple_border_dark_raised.png");
 }
 
 #projects.dark > a:active {
