@@ -55,35 +55,59 @@ $(document).ready(setup);
 // Runs once when the document is ready
 function setup() {
 	// Howler
-	sounds.once("load", function(){
-		console.log("Sound sprites loaded!");
-	});
 	sounds.once("loaderror", function(){
-		console.log("Sound sprites failed to load!");
+		console.log("sound sprites failed to load");
 	});
 
-	// Build project menu before anything else
-	buildProjectMenu(function(){
-		setupTheme();
-		attachSounds();
-		// Connect buttons
-		$("#theme-btn").click(toggleTheme);
-		$("#mute-btn").click(toggleMute);
-		// Load page
-		loadPage(location.hash);
-		window.onhashchange = function(){loadPage(location.hash);};
-		// Cactus
-		positionCactus();
-		$(window).resize(positionCactus);
-	}, function(){
-		$("body").html("error building project menu")
-	});
+	// Load project list
+	$.getJSON(projectListPath)
+		.done(function(data){ // build menu using project list
+			buildProjectMenu(data.projects);
+		})
+		.fail(function(){ // no project menu :(
+			console.log("no project list");
+			$("#projects").text("empty for now :(");
+		})
+		.always(function(){ // run the rest of the setup
+			themeInit();
+			attachSounds();
+
+			// Connect settings buttons
+			$("#theme-btn").click(toggleTheme);
+			$("#mute-btn").click(toggleMute);
+
+			// Configure the page content based on the location hash
+			loadPage(location.hash);
+			window.onhashchange = function(){loadPage(location.hash);};
+
+			// Lastly, position the cactus relative to the dialog box
+			positionCactus();
+			$(window).resize(positionCactus);
+		});
 }
 
+// Appends project links to #projects div element using project list
+function buildProjectMenu(projects) {
+	for (let i = 0; i < projects.length; i++) {
+		// Update project IDs list
+		data.projectIDs.push(projects[i].id);
+
+		// Build menu item
+		const project = $("<a>")
+			.attr("href", "#project-" + projects[i].id)
+			.addClass("click0");
+		project.append($("<h2>").text(projects[i].title));
+		project.append($("<p>").text(projects[i].description));
+
+		// Append menu item
+		$("#projects").append(project);
+		console.log("project added: " + projects[i].id);
+	}
+}
 
 // Sets the theme variable using local storage or sets local storage if not
 // already set and set initial site theme
-function setupTheme() {
+function themeInit() {
 	if (localStorage.theme) data.settings.theme = localStorage.theme;
 	else localStorage.theme = data.settings.theme;
 	// Configure dark theme if so
@@ -92,21 +116,134 @@ function setupTheme() {
 
 // Connects sounds to button events
 function attachSounds() {
-	$(".click0").mouseover(function(){playSprite("hover");});
-	$(".click0").mousedown(function(){playSprite("click0Down");});
-	$(".click0").mouseup(function(){playSprite("click0Up");});
-	$(".click1").mousedown(function(){playSprite("click1Down");});
-	$(".click1").mouseup(function(){playSprite("click1Up");});
-	$(".click2").mouseover(function(){playSprite("hover");});
-	$(".click2").mousedown(function(){playSprite("click2Down");});
-	$(".click2").mouseup(function(){playSprite("click2Up");});
-	$("#mute-btn").mouseover(function(){playSprite("hover");});
-	$("#cactus-img").mousedown(function(){playSprite("bubble0");});
-	$("#cactus-img").mouseup(function(){playSprite("bubble1");});
+	$(".click0").on("mouseenter", function(){playSprite("hover");});
+	$(".click0").on("mousedown", function(){playSprite("click0Down");});
+	$(".click0").on("mouseup", function(){playSprite("click0Up");});
+	$(".click1").on("mousedown", function(){playSprite("click1Down");});
+	$(".click1").on("mouseup", function(){playSprite("click1Up");});
+	$(".click2").on("mouseenter", function(){playSprite("hover");});
+	$(".click2").on("mousedown", function(){playSprite("click2Down");});
+	$(".click2").on("mouseup", function(){playSprite("click2Up");});
+	$("#mute-btn").on("mouseenter", function(){playSprite("hover");});
+	$("#cactus-img").on("mousedown", function(){playSprite("bubble0");});
+	$("#cactus-img").on("mouseup", function(){playSprite("bubble1");});
 }
 
-/*------------------------------Cactus Functions------------------------------*/
+/*---------------------------------Content------------------------------------*/
 
+// Configures the page and loads the content box based on the location hash
+function loadPage(locHash) {
+	// Clear content box
+	$("#content-box").empty();
+
+	// About me page
+	if (locHash == "#aboutme") {
+		$(".welcome").hide();
+		$(".subpage").show();
+		$(".close-btn").show();
+		$(".back-btn").hide();
+		$("#projects").hide();
+		$.get("pages/aboutme.html")
+			.done(function(data){
+				$("#content-box").html(data);
+			})
+			.fail(function(){
+				console.log("failed to load aboutme.html");
+				$("#content-box").text("strange... I have nothing to show.");
+			})
+			.always(positionCactus);
+
+	// Projects page
+	} else if (locHash == "#projects") {
+		$(".welcome").hide();
+		$(".subpage").show();
+		$(".close-btn").show();
+		$(".back-btn").hide();
+		$("#projects").show();
+		$.get("pages/projects.html")
+			.done(function(data){
+				$("#content-box").html(data);
+			})
+			.fail(function(){
+				console.log("failed to load projects.html");
+				$("#content-box").text("strange... I have nothing to show.");
+			})
+			.always(positionCactus);
+
+	// Links page
+	} else if (locHash == "#links") {
+		$(".welcome").hide();
+		$(".subpage").show();
+		$(".close-btn").show();
+		$(".back-btn").hide();
+		$("#projects").hide();
+		$.get("pages/links.html")
+			.done(function(data){
+				$("#content-box").html(data);
+			})
+			.fail(function(){
+				console.log("failed to load links.html");
+				$("#content-box").text("strange... I have nothing to show.");
+			})
+			.always(positionCactus);
+
+	// Contact page
+	} else if (locHash == "#contact") {
+		$(".welcome").hide();
+		$(".subpage").show();
+		$(".close-btn").show();
+		$(".back-btn").hide();
+		$("#projects").hide();
+		$.get("pages/contact.html")
+			.done(function(data){
+				$("#content-box").html(data);
+			})
+			.fail(function(){
+				console.log("failed to load contact.html");
+				$("#content-box").text("strange... I have nothing to show.");
+			})
+			.always(positionCactus);
+
+	} else {
+		// Load project
+		const projectID = locHash.replace("#project-", "");
+		if (data.projectIDs.includes(projectID)) {
+			$(".back-btn").attr("href", "#projects");
+			$(".welcome").hide();
+			$(".subpage").show();
+			$(".close-btn").show();
+			$(".back-btn").show();
+			$("#projects").hide();
+			const projectPath = projectDir + projectID + "/";
+			$.get(projectPath + projectID + ".md")
+				.done(function(data){
+					$("#content-box").html(marked.parse(data));
+					$("#content-box img").each(function(){ // correct image paths
+						const oldSrc = $(this).attr("src");
+						$(this).attr("src", projectPath + oldSrc);
+					});
+				})
+				.fail(function(){
+					console.log("failed to load " + projectID + ".md");
+					$("#content-box").text("strange.. I have nothing to show.");
+				})
+				.always(positionCactus);
+
+		// Default to welcome page
+		} else {
+			$(".welcome").show();
+			$(".subpage").hide();
+			$(".close-btn").hide();
+			$(".back-btn").hide();
+			$("#projects").hide();
+			$("#content-box").load("pages/welcome.html", positionCactus);
+		}
+	}
+}
+
+/*-----------------------------------Cactus-----------------------------------*/
+
+// Positions cactus image relative to the dialog box
 function positionCactus() {
 	const dialog = $("#prickly-dialog");
 	const windowW = $(window).width();
@@ -114,20 +251,20 @@ function positionCactus() {
 	const cactusW = $("#cactus-img").width();
 	let cactusT = 0;
 	let cactusL = 0;
-	if (windowW > 800) { // desktop position
-		// Calculate new position
+
+	if (windowW > 800) { // calculate desktop position
 		cactusT = Math.round(constrain(
 			dialog.position().top + dialog.height() - 0.1*cactusW,
 			0, windowH - cactusW));
 		cactusL = Math.round(constrain(
 			dialog.position().left - cactusW,
 			0, windowW - cactusW));
-	} else { // mobile position
-		// Caculate new position
+	} else { // calculate mobile position
 		cactusT = Math.round(
 			dialog.position().top + dialog.height() + 0.52*cactusW);
 		cactusL = Math.round(0.5*windowW - 0.52*cactusW);
 	}
+
 	// Set position
 	$("#cactus-img").css({
 		"top": `${cactusT}px`,
@@ -135,7 +272,7 @@ function positionCactus() {
 	});
 }
 
-/*-----------------------------Settings Functions-----------------------------*/
+/*----------------------------------Settings----------------------------------*/
 
 function toggleTheme() {
 	// Toggle setting
@@ -146,8 +283,8 @@ function toggleTheme() {
 		data.settings.theme = "dark";
 		dusk();
 	}
-	// Set local storage
-	localStorage.theme = data.settings.theme;
+
+	localStorage.theme = data.settings.theme; // set local storage
 }
 
 function dawn() {
@@ -179,102 +316,9 @@ function unmute() {
 	$("#mute-btn").removeClass("muted");
 }
 
-/*----------------------------Content & Navigation----------------------------*/
+/*---------------------------More Helper Functions----------------------------*/
 
-function buildProjectMenu(successCallback, failureCallback) {
-	$.getJSON(projectListPath, function(result){
-		for (let i = 0; i < result.projects.length; i++) {
-			// Update project IDs list
-			data.projectIDs.push(result.projects[i].id);
-			// Build menu
-			const project = $("<a>")
-				.attr("href", "#project-" + result.projects[i].id)
-				.addClass("click0")
-				.text(result.projects[i].title);
-			$("#projects").append(project);
-		}
-		successCallback();
-	}).fail(failureCallback);
-}
-
-function loadPage(locHash) {
-	$("#content-box").empty();
-	// About me page
-	if (locHash == "#aboutme") {
-		$(".welcome").hide();
-		$(".subpage").show();
-		$(".close-btn").show();
-		$(".back-btn").hide();
-		$("#projects").hide();
-		$("#content-box").load("pages/aboutme.html", positionCactus);
-	// Projects page
-	} else if (locHash == "#projects") {
-		$(".welcome").hide();
-		$(".subpage").show();
-		$(".close-btn").show();
-		$(".back-btn").hide();
-		$("#projects").show();
-		$("#content-box").load("pages/projects.html", positionCactus);
-	// Links page
-	} else if (locHash == "#links") {
-		$(".welcome").hide();
-		$(".subpage").show();
-		$(".close-btn").show();
-		$(".back-btn").hide();
-		$("#projects").hide();
-		$("#content-box").load("pages/links.html", positionCactus);
-	// Contact page
-	} else if (locHash == "#contact") {
-		$(".welcome").hide();
-		$(".subpage").show();
-		$(".close-btn").show();
-		$(".back-btn").hide();
-		$("#projects").hide();
-		$("#content-box").load("pages/contact.html", positionCactus);
-	} else {
-		// Load project
-		const projectID = locHash.replace("#project-", "");
-		if (data.projectIDs.includes(projectID)) {
-			$(".back-btn").attr("href", "#projects");
-			$(".welcome").hide();
-			$(".subpage").show();
-			$(".close-btn").show();
-			$(".back-btn").show();
-			$("#projects").hide();
-			loadProject(projectID,
-				function(){setTimeout(positionCactus, 0);},
-				function(){
-					$("#content-box").text(`error loading ${projectID}.md`);
-					positionCactus();
-				});
-		// Default to welcome page
-		} else {
-			$(".welcome").show();
-			$(".subpage").hide();
-			$(".close-btn").hide();
-			$(".back-btn").hide();
-			$("#projects").hide();
-			$("#content-box").load("pages/welcome.html", positionCactus);
-		}
-	}
-}
-
-function loadProject(projectID, successCallback, failureCallback) {
-	const projectPath = projectDir + projectID + "/";
-	$.get(projectPath + projectID + ".md", function(data){
-		// Load markdown data
-		$("#content-box").html(marked.parse(data));
-		// Correct image source paths
-		$("#content-box img").each(function(){
-			const oldSrc = $(this).attr("src");
-			$(this).attr("src", projectPath + oldSrc);
-		});
-		successCallback();
-	}).fail(failureCallback);
-}
-
-/*--------------------------------More Actions--------------------------------*/
-
+// Plays a sound using the sprite name and stops other sound effects
 function playSprite(sprite) {
 	if (!data.settings.muted) {
 		sounds.stop();

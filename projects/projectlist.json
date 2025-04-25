@@ -3,13 +3,11 @@
 		{
 			"id": "test",
 			"title": "Test Project 1",
-			"date": "Apr. 2025",
 			"description": "This is just a test project."
 		},
 		{
 			"id": "test2",
 			"title": "Test Project 2 Electric Boogaloo",
-			"date": "Apr. 2025",
 			"description": "This is also just a test project."
 		}
 	]
