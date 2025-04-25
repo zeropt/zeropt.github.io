@@ -39,7 +39,7 @@ body {
 	color: black;
 }
 
-body.dark {
+.dark body {
 	/* Text */
 	color: lavenderblush;
 }
@@ -157,7 +157,7 @@ img {
 	border-image-source: url("../img/simple_border.png");
 }
 
-.nav.dark > a {
+.dark .nav > a {
 	/* Border */
 	border-image-source: url("../img/simple_border_dark.png");
 	/* Background */
@@ -167,11 +167,11 @@ img {
 	font-weight: bold;
 }
 
-.nav.dark > a:hover {
+.dark .nav > a:hover {
 	border-image-source: url("../img/simple_border_dark_raised.png");
 }
 
-.nav.dark > a:active {
+.dark .nav > a:active {
 	border-image-source: url("../img/simple_border_dark.png");
 }
 
@@ -245,7 +245,7 @@ img {
 	border-image-source: url("../img/simple_border.png");
 }
 
-#projects.dark > a {
+.dark #projects > a {
 	/* Border */
 	border-image-source: url("../img/simple_border_dark.png");
 	/* Background */
@@ -255,11 +255,11 @@ img {
 /*	font-weight: bold;*/
 }
 
-#projects.dark > a:hover {
+.dark #projects > a:hover {
 	border-image-source: url("../img/simple_border_dark_raised.png");
 }
 
-#projects.dark > a:active {
+.dark #projects > a:active {
 	border-image-source: url("../img/simple_border_dark.png");
 }
 
@@ -282,16 +282,16 @@ img {
 	background-image: url("../img/theme_sprites.png");
 }
 
-#theme-btn.dark {
-	background-position-y: -64px;
-}
-
 #theme-btn:hover {
 	background-position-x: -64px;
 }
 
 #theme-btn:active {
 	background-position-x: 0;
+}
+
+.dark #theme-btn {
+	background-position-y: -64px;
 }
 
 #mute-btn {
@@ -304,11 +304,6 @@ img {
 	background-image: url("../img/mute_sprites.png");
 }
 
-#mute-btn.dark {
-	/* Sprite Sheet */
-	background-image: url("../img/mute_sprites_dark.png");
-}
-
 #mute-btn.muted {
 	background-position-y: -64px;
 }
@@ -319,6 +314,11 @@ img {
 
 #mute-btn:active {
 	background-position-x: 0;
+}
+
+.dark #mute-btn {
+	/* Sprite Sheet */
+	background-image: url("../img/mute_sprites_dark.png");
 }
 
 #prickly-dialog {
@@ -336,7 +336,7 @@ img {
 	flex-flow: column nowrap;
 }
 
-#prickly-dialog.dark {
+.dark #prickly-dialog {
 	/* Border */
 	border-image-source: url("../img/prickly_border_dark.png");
 	/* Background */
@@ -360,16 +360,22 @@ img {
 	color: dimgray;
 }
 
-#cactus-img {
+#cactus {
 	/* Size */
 	width: 256px;
-	height: auto;
+	height: 256px;
 	/* Positioning */
 	position: fixed;
+	background: url("../img/cactus.png") no-repeat center;
+	background-size: cover;
 }
 
-#cactus-img:active {
+#cactus:active {
 	transform: translateY(4px);
+}
+
+.dark #cactus {
+	background-image: url("../img/cactus_dark.png");
 }
 
 /*-------------------------------Mobile Styling-------------------------------*/
@@ -453,16 +459,17 @@ img {
 		border-image-source: url("../img/prickly_border_mobile.png");
 	}
 
-	#prickly-dialog.dark {
+	.dark #prickly-dialog {
 		border-image-source: url("../img/prickly_border_mobile_dark.png");
 	}
 
-	#cactus-img {
+	#cactus {
 		/* Size */
 		width: 192px;
+		height: 192px;
 	}
 
-	#cactus-img:active {
+	#cactus:active {
 		transform: translateY(3px);
 	}
 }

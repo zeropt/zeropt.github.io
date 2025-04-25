@@ -111,7 +111,7 @@ function themeInit() {
 	if (localStorage.theme) data.settings.theme = localStorage.theme;
 	else localStorage.theme = data.settings.theme;
 	// Configure dark theme if so
-	if (data.settings.theme == "dark") dusk();
+	if (data.settings.theme == "dark") $("html").addClass("dark");
 }
 
 // Connects sounds to button events
@@ -125,8 +125,8 @@ function attachSounds() {
 	$(".click2").on("mousedown", function(){playSprite("click2Down");});
 	$(".click2").on("mouseup", function(){playSprite("click2Up");});
 	$("#mute-btn").on("mouseenter", function(){playSprite("hover");});
-	$("#cactus-img").on("mousedown", function(){playSprite("bubble0");});
-	$("#cactus-img").on("mouseup", function(){playSprite("bubble1");});
+	$("#cactus").on("mousedown", function(){playSprite("bubble0");});
+	$("#cactus").on("mouseup", function(){playSprite("bubble1");});
 }
 
 /*---------------------------------Content------------------------------------*/
@@ -243,12 +243,12 @@ function loadPage(locHash) {
 
 /*-----------------------------------Cactus-----------------------------------*/
 
-// Positions cactus image relative to the dialog box
+// Positions cactus relative to the dialog box
 function positionCactus() {
 	const dialog = $("#prickly-dialog");
 	const windowW = $(window).width();
 	const windowH = $(window).height();
-	const cactusW = $("#cactus-img").width();
+	const cactusW = $("#cactus").width();
 	let cactusT = 0;
 	let cactusL = 0;
 
@@ -266,7 +266,7 @@ function positionCactus() {
 	}
 
 	// Set position
-	$("#cactus-img").css({
+	$("#cactus").css({
 		"top": `${cactusT}px`,
 		"left": `${cactusL}px`,
 	});
@@ -278,42 +278,24 @@ function toggleTheme() {
 	// Toggle setting
 	if (data.settings.theme == "dark") {
 		data.settings.theme = "light";
-		dawn();
+		$("html").removeClass("dark");
 	} else {
 		data.settings.theme = "dark";
-		dusk();
+		$("html").addClass("dark");
 	}
 
 	localStorage.theme = data.settings.theme; // set local storage
 }
 
-function dawn() {
-	$(".themed").removeClass("dark");
-	$("#cactus-img").attr("src", "img/cactus.png");
-}
-
-function dusk() {
-	$(".themed").addClass("dark");
-	$("#cactus-img").attr("src", "img/cactus_dark.png");
-}
-
 function toggleMute() {
 	if (data.settings.muted) {
 		data.settings.muted = false;
-		unmute();
+		playSprite("bubble0");
+		$("#mute-btn").removeClass("muted");
 	} else {
 		data.settings.muted = true;
-		mute();
+		$("#mute-btn").addClass("muted");
 	}
-}
-
-function mute() {
-	$("#mute-btn").addClass("muted");
-}
-
-function unmute() {
-	playSprite("click0Down");
-	$("#mute-btn").removeClass("muted");
 }
 
 /*---------------------------More Helper Functions----------------------------*/
