@@ -14,14 +14,30 @@
 
 html {
 	height: 100%;
-	background: url("../img/dunescape.png") no-repeat center fixed;
-	background-size: cover;
+	background-image:
+		url("../img/dunescape_layer_5.png"),
+		url("../img/dunescape_layer_4.png"),
+		url("../img/dunescape_layer_3.png"),
+		url("../img/dunescape_layer_2.png"),
+		url("../img/dunescape_layer_1.png"),
+		url("../img/dunescape_layer_0.png"),
+		url("../img/dunescape_sky.png");
+	background-position: center, center, center, center, center, center, center;
+	background-size: cover, cover, cover, cover, cover, cover, cover;
 	background-color: lemonchiffon;
 }
 
 html.dark {
-	background: url("../img/dunescape_dark.png") no-repeat center fixed;
-	background-size: cover;
+	background-image:
+		url("../img/dunescape_layer_5_dark.png"),
+		url("../img/dunescape_layer_4_dark.png"),
+		url("../img/dunescape_layer_3_dark.png"),
+		url("../img/dunescape_layer_2_dark.png"),
+		url("../img/dunescape_layer_1_dark.png"),
+		url("../img/dunescape_layer_0_dark.png"),
+		url("../img/dunescape_sky_dark.png");
+	background-position: center, center, center, center, center, center, center;
+	background-size: cover, cover, cover, cover, cover, cover, cover;
 	background-color: #262626;
 }
 

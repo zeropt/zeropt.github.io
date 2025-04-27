@@ -7,9 +7,18 @@
  * Created on 16 Apr. 2025
  */
 
+const MAX_WIDTH = 800; // max width for mobile styling
+
 // Paths and variables for automatic project loading
-const projectDir = "projects/";
-const projectListPath = "projects/projectlist.json";
+const PROJECT_DIR = "projects/";
+const PROJECT_LIST_PATH = "projects/projectlist.json";
+
+// Dune movement variables
+const DUNE_NUM = 6;
+const MAX_DUNE_PARALLAX = 6;
+const DUNE_WIDTH = 512; // pxart width
+const DUNE_HEIGHT = 216; // pxart height
+const DUNE_PX_SCALE = 5; // image pixels per pxart pixel
 
 // Global data
 const data = {
@@ -17,7 +26,8 @@ const data = {
 		theme: "light",
 		muted: false
 	},
-	projectIDs: [] // to be populated later
+	projectIDs: [], // to be populated later
+	pxartScale: DUNE_PX_SCALE,
 };
 
 // Create howler sprites
@@ -54,13 +64,21 @@ $(document).ready(setup);
 
 // Runs once when the document is ready
 function setup() {
+	// Background
+	sizeDunes();
+	$(window).on({
+		resize: sizeDunes,
+		scroll: scrollDunes
+	});
+	$(document).on("mousemove", moveDunes);
+
 	// Howler
 	sounds.once("loaderror", function(){
 		console.log("sound sprites failed to load");
 	});
 
 	// Load project list
-	$.getJSON(projectListPath)
+	$.getJSON(PROJECT_LIST_PATH)
 		.done(function(data){ // build menu using project list
 			buildProjectMenu(data.projects);
 		})
@@ -141,6 +159,96 @@ function attachSounds() {
 		mousedown: function(){playSprite("bubble0");},
 		mouseup: function(){playSprite("bubble1");}
 	});
+}
+
+/*---------------------------------Background---------------------------------*/
+
+// Sets the size of the dunescape background images according to the window
+// dimensions
+function sizeDunes() {
+	const win = {w: $(window).width(), h: $(window).height()};
+	const maxDune = {
+		w: DUNE_WIDTH - 2*MAX_DUNE_PARALLAX,
+		h: DUNE_HEIGHT - 2*MAX_DUNE_PARALLAX
+	};
+	const taller = win.h < (maxDune.h * win.w) / maxDune.w;
+	data.pxartScale = taller ? win.w / maxDune.w : win.h / maxDune.h;
+
+	// Calculate dunescape image size
+	const imgWidth = Math.round(data.pxartScale * DUNE_WIDTH);
+
+	// Set dunescape img sizes
+	let style = "";
+	for (let i = 0; i < DUNE_NUM; i++) style += imgWidth + "px, ";
+	style += imgWidth + "px";
+	$("html").css("background-size", style);
+
+	if (win.w > MAX_WIDTH) { // Desktop: center dunescape images
+		style = "";
+		for (let i = 0; i < DUNE_NUM; i++) style += "center, ";
+		style += "center";
+		$("html").css("background-position", style);
+	} else { // Mobile: reposition dunescape images
+		scrollDunes();
+	}
+}
+
+// Creates a parallax effect using the mouse cursor position (Desktop)
+function moveDunes(event) {
+	const win = {w: $(window).width(), h: $(window).height()};
+	if (win.w > MAX_WIDTH) { // only if desktop styled
+		const mouse = {x: event.pageX, y: event.pageY};
+
+		// Calculate parallax
+		const parallax = {
+			x: 2 * MAX_DUNE_PARALLAX * (0.5*win.w - mouse.x) / win.w,
+			y: 2 * MAX_DUNE_PARALLAX * (0.5*win.h - mouse.y) / win.h
+		};
+		const start = {
+			x: 0.5 * (win.w - data.pxartScale * DUNE_WIDTH),
+			y: 0.5 * (win.h - data.pxartScale * DUNE_HEIGHT)
+		};
+		let style = "";
+		for (let i = 0; i < DUNE_NUM; i++) {
+			const x = Math.round(
+				start.x + data.pxartScale * Math.round(parallax.x / (i + 1)));
+			const y = Math.round(
+				start.y + data.pxartScale * Math.round(parallax.y / (i + 1)));
+			style += x + "px " + y + "px, ";
+		}
+		style += "center"; // center sky
+
+		// Set dunescape img positions
+		$("html").css("background-position", style);
+	}
+}
+
+// Creates a parallax effect using the scroll posiiton (Mobile)
+function scrollDunes() {
+	const win = {w: $(window).width(), h: $(window).height()};
+	const page = {w: $(".layout").width(), h: $(".layout").height()};
+	const scroll = $(window).scrollTop();
+
+	// Calculate parallax
+	const parallaxY = (page.h == win.h) ? MAX_DUNE_PARALLAX :
+		2 * MAX_DUNE_PARALLAX * (0.5*(page.h - win.h) - scroll)
+		/ (page.h - win.h);
+	const start = {
+		x: 0.5 * (win.w - data.pxartScale * DUNE_WIDTH),
+		y: 0.5 * (win.h - data.pxartScale * DUNE_HEIGHT) + scroll
+	};
+	let style = "";
+	for (let i = 0; i < DUNE_NUM; i++) {
+		const x = Math.round(start.x);
+		const y = Math.round(
+			start.y + data.pxartScale * Math.round(parallaxY / (i + 1)));
+		style += x + "px " + y + "px, ";
+	}
+	style += 
+		Math.round(start.x) + "px " + Math.round(start.y) + "px"; // center sky
+
+	// Set dunescape img positions
+	$("html").css("background-position", style);
 }
 
 /*---------------------------------Content------------------------------------*/
@@ -228,7 +336,7 @@ function loadPage(locHash) {
 			$(".back-btn").attr("href", "#projects");
 			$(".back-btn").show();
 			$("#projects").hide();
-			const projectPath = projectDir + projectID + "/";
+			const projectPath = PROJECT_DIR + projectID + "/";
 			$.get(projectPath + projectID + ".md")
 				.done(function(data){
 					$("#content").html(marked.parse(data));
@@ -273,7 +381,7 @@ function cactusPosition() {
 	let cactusT = 0;
 	let cactusL = 0;
 
-	if (windowW > 800) { // calculate desktop position
+	if (windowW > MAX_WIDTH) { // calculate desktop position
 		cactusT = Math.round(constrain(
 			dialog.position().top + dialog.height() - 0.55*cactusW,
 			0, windowH - cactusW));
