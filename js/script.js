@@ -122,17 +122,25 @@ function themeInit() {
 
 // Connects sounds to button events
 function attachSounds() {
-	$(".click0").on("mouseenter", function(){playSprite("hover");});
-	$(".click0").on("mousedown", function(){playSprite("click0Down");});
-	$(".click0").on("mouseup", function(){playSprite("click0Up");});
-	$(".click1").on("mousedown", function(){playSprite("click1Down");});
-	$(".click1").on("mouseup", function(){playSprite("click1Up");});
-	$(".click2").on("mouseenter", function(){playSprite("hover");});
-	$(".click2").on("mousedown", function(){playSprite("click2Down");});
-	$(".click2").on("mouseup", function(){playSprite("click2Up");});
+	$(".click0").on({
+		mouseenter: function(){playSprite("hover");},
+		mousedown: function(){playSprite("click0Down");},
+		mouseup: function(){playSprite("click0Up");}
+	});
+	$(".click1").on({
+		mousedown: function(){playSprite("click1Down");},
+		mouseup: function(){playSprite("click1Up");}
+	});
+	$(".click2").on({
+		mouseenter: function(){playSprite("hover");},
+		mousedown: function(){playSprite("click2Down");},
+		mouseup: function(){playSprite("click2Up");}
+	});
 	$("#mute-btn").on("mouseenter", function(){playSprite("hover");});
-	$("#cactus").on("mousedown", function(){playSprite("bubble0");});
-	$("#cactus").on("mouseup", function(){playSprite("bubble1");});
+	$("#cactus").on({
+		mousedown: function(){playSprite("bubble0");},
+		mouseup: function(){playSprite("bubble1");}
+	});
 }
 
 /*---------------------------------Content------------------------------------*/
