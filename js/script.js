@@ -75,14 +75,20 @@ function setup() {
 			// Connect settings buttons
 			$("#theme-btn").click(toggleTheme);
 			$("#mute-btn").click(toggleMute);
+			$("#cactus").click(function(){$("html").toggleClass("spring")});
 
 			// Configure the page content based on the location hash
 			loadPage(location.hash);
 			window.onhashchange = function(){loadPage(location.hash);};
 
-			// Lastly, position the cactus relative to the dialog box
-			positionCactus();
-			$(window).resize(positionCactus);
+			// Reposition the cactus on window resize
+			$(window).resize(function(){
+				const position = cactusPosition();
+				$("#cactus").css({
+					"top": position.top + "px",
+					"left": position.left + "px",
+				});
+			});
 		});
 }
 
@@ -151,7 +157,7 @@ function loadPage(locHash) {
 				console.log("failed to load aboutme.html");
 				$("#content").text("strange... I have nothing to show.");
 			})
-			.always(positionCactus);
+			.always(animateCactus);
 
 	// Projects page
 	} else if (locHash == "#projects") {
@@ -168,7 +174,7 @@ function loadPage(locHash) {
 				console.log("failed to load projects.html");
 				$("#content").text("strange... I have nothing to show.");
 			})
-			.always(positionCactus);
+			.always(animateCactus);
 
 	// Links page
 	} else if (locHash == "#links") {
@@ -185,7 +191,7 @@ function loadPage(locHash) {
 				console.log("failed to load links.html");
 				$("#content").text("strange... I have nothing to show.");
 			})
-			.always(positionCactus);
+			.always(animateCactus);
 
 	// Contact page
 	} else if (locHash == "#contact") {
@@ -202,7 +208,7 @@ function loadPage(locHash) {
 				console.log("failed to load contact.html");
 				$("#content").text("strange... I have nothing to show.");
 			})
-			.always(positionCactus);
+			.always(animateCactus);
 
 	} else {
 		// Load project
@@ -227,7 +233,7 @@ function loadPage(locHash) {
 					console.log("failed to load " + projectID + ".md");
 					$("#content").text("strange.. I have nothing to show.");
 				})
-				.always(positionCactus);
+				.always(animateCactus);
 
 		// Default to welcome page
 		} else {
@@ -235,15 +241,23 @@ function loadPage(locHash) {
 			$(".subpage").hide();
 			$(".exit-bar").addClass("hidden");
 			$("#projects").hide();
-			$("#content").load("pages/welcome.html", positionCactus);
+			$.get("pages/welcome.html")
+				.done(function(data){
+					$("#content").html(data);
+				})
+				.fail(function(){
+					console.log("failed to load welcome.html");
+					$("#content").text("strange... I have nothing to show.");
+				})
+				.always(animateCactus);
 		}
 	}
 }
 
 /*-----------------------------------Cactus-----------------------------------*/
 
-// Positions cactus relative to the dialog box
-function positionCactus() {
+// Returns the cactus position relative to the dialog box
+function cactusPosition() {
 	const dialog = $("#cactus-dialog");
 	const windowW = $(window).width();
 	const windowH = $(window).height();
@@ -264,10 +278,26 @@ function positionCactus() {
 		cactusL = Math.round(0.5*windowW - 0.52*cactusW);
 	}
 
-	// Set position
-	$("#cactus").css({
-		"top": `${cactusT}px`,
-		"left": `${cactusL}px`,
+	// return position data
+	return {top: cactusT, left: cactusL};
+}
+
+// Animate the cactus and dialog box for subpage changes
+function animateCactus() {
+	$("#content").parent().show(0, function(){
+		const endPosition = cactusPosition();
+		$("#content").parent().hide(0, function(){
+			const startPosition = cactusPosition();
+			$("#cactus").css({
+				"top": startPosition.top + "px",
+				"left": startPosition.left + "px",
+			});
+			$("#content").parent().show(200);
+			$("#cactus").animate({
+					"top": endPosition.top + "px",
+					"left": endPosition.left + "px",
+				}, 200);
+		});
 	});
 }
 

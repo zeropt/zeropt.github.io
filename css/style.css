@@ -158,6 +158,19 @@ img {
 	border-image-source: url("../img/simple_border.png");
 }
 
+.spring .nav > a {
+	border-image-source: url("../img/simple_border_spring.png");
+	background-color: lightpink;
+}
+
+.spring .nav > a:hover {
+	border-image-source: url("../img/simple_border_spring_raised.png");
+}
+
+.spring .nav > a:active {
+	border-image-source: url("../img/simple_border_spring.png");
+}
+
 .dark .nav > a {
 	border-image-source: url("../img/simple_border_dark.png");
 	background-color: #262626;
@@ -171,6 +184,10 @@ img {
 
 .dark .nav > a:active {
 	border-image-source: url("../img/simple_border_dark.png");
+}
+
+.dark.spring .nav > a {
+	color: plum;
 }
 
 /*----------------------------Close & Back Buttons----------------------------*/
@@ -248,6 +265,19 @@ img {
 	padding-top: 8px;
 	padding-bottom: 0;
 	border-image-source: url("../img/simple_border.png");
+}
+
+.spring #projects > a {
+	border-image-source: url("../img/simple_border_spring.png");
+	background-color: lightpink;
+}
+
+.spring #projects > a:hover {
+	border-image-source: url("../img/simple_border_spring_raised.png");
+}
+
+.spring #projects > a:active {
+	border-image-source: url("../img/simple_border_spring.png");
 }
 
 .dark #projects > a {
@@ -338,16 +368,41 @@ img {
 	width: 256px;
 	height: 256px;
 	position: fixed;
-	background: url("../img/cactus.png") no-repeat center;
-	background-size: cover;
+	padding: 0;
+	border: none;
+	background-color: transparent;
+	background-image: url("../img/cactus.png");
+	background-size: 100%;
+}
+
+.dark #cactus {
+	background-position-y: -256px;
 }
 
 #cactus:active {
 	transform: translateY(4px);
 }
 
-.dark #cactus {
-	background-image: url("../img/cactus_dark.png");
+.spring ul {
+	list-style-image: url("../img/bullet_point.gif");
+}
+
+.spring h1, .spring h2, .spring h3, .spring h4, .spring h5, .spring h6,
+.spring strong, .spring em {
+	color: lightpink;
+}
+
+.dark.spring h1, .dark.spring h2, .dark.spring h3, .dark.spring h4,
+.dark.spring h5, .dark.spring h6, .dark.spring strong, .dark.spring em {
+	color: plum;
+}
+
+.spring #title-heading {
+	color: black;
+}
+
+.dark.spring #title-heading {
+	color: plum;
 }
 
 /*-------------------------------Mobile Styling-------------------------------*/
@@ -432,6 +487,10 @@ img {
 	#cactus {
 		width: 192px;
 		height: 192px;
+	}
+
+	.dark #cactus {
+		background-position-y: -192px;
 	}
 
 	#cactus:active {
