@@ -13,12 +13,16 @@ const MAX_WIDTH = 800; // max width for mobile styling
 const PROJECT_DIR = "projects/";
 const PROJECT_LIST_PATH = "projects/projectlist.json";
 
-// Dune movement variables
+// Dune movement parameters
 const DUNE_NUM = 6;
 const MAX_DUNE_PARALLAX = 6;
 const DUNE_WIDTH = 512; // pxart width
 const DUNE_HEIGHT = 216; // pxart height
 const DUNE_PX_SCALE = 5; // image pixels per pxart pixel
+
+// Image sizing parameters
+const MAX_IMG_WIDTH = 0.75; // times of container width
+const MAX_IMG_HEIGHT = 0.5; // times of container height
 
 // Global data
 const data = {
@@ -268,6 +272,7 @@ function loadPage(locHash) {
 		$.get("pages/aboutme.html")
 			.done(function(data){
 				$("#content").html(data);
+				fixContentPaths("pages/");
 			})
 			.fail(function(){
 				console.log("failed to load aboutme.html");
@@ -285,6 +290,7 @@ function loadPage(locHash) {
 		$.get("pages/projects.html")
 			.done(function(data){
 				$("#content").html(data);
+				fixContentPaths("pages/");
 			})
 			.fail(function(){
 				console.log("failed to load projects.html");
@@ -302,6 +308,7 @@ function loadPage(locHash) {
 		$.get("pages/links.html")
 			.done(function(data){
 				$("#content").html(data);
+				fixContentPaths("pages/");
 			})
 			.fail(function(){
 				console.log("failed to load links.html");
@@ -319,6 +326,7 @@ function loadPage(locHash) {
 		$.get("pages/contact.html")
 			.done(function(data){
 				$("#content").html(data);
+				fixContentPaths("pages/");
 			})
 			.fail(function(){
 				console.log("failed to load contact.html");
@@ -336,14 +344,11 @@ function loadPage(locHash) {
 			$(".back-btn").attr("href", "#projects");
 			$(".back-btn").show();
 			$("#projects").hide();
-			const projectPath = PROJECT_DIR + projectID + "/";
-			$.get(projectPath + projectID + ".md")
+			const path = PROJECT_DIR + projectID + "/";
+			$.get(path + projectID + ".md")
 				.done(function(data){
 					$("#content").html(marked.parse(data));
-					$("#content img").each(function(){ // correct image paths
-						const oldSrc = $(this).attr("src");
-						$(this).attr("src", projectPath + oldSrc);
-					});
+					fixContentPaths(path);
 				})
 				.fail(function(){
 					console.log("failed to load " + projectID + ".md");
@@ -360,6 +365,7 @@ function loadPage(locHash) {
 			$.get("pages/welcome.html")
 				.done(function(data){
 					$("#content").html(data);
+					fixContentPaths("pages/");
 				})
 				.fail(function(){
 					console.log("failed to load welcome.html");
@@ -368,6 +374,15 @@ function loadPage(locHash) {
 				.always(animateCactus);
 		}
 	}
+}
+
+// Prepends import paths in #content with the supplied string
+function fixContentPaths(path) {
+	// Corrent img paths
+	$("#content img").each(function(){
+		const oldSrc = $(this).attr("src");
+		$(this).attr("src", path + oldSrc);
+	});
 }
 
 /*-----------------------------------Cactus-----------------------------------*/
