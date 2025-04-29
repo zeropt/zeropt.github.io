@@ -90,6 +90,7 @@ img {
 	max-width: 100%;
 	max-height: 50vh;
 	border: 4px solid var(--border-color);
+	box-sizing: border-box;
 	object-fit: cover;
 }
 
@@ -195,6 +196,7 @@ img {
 .prickly {
 	border: 48px solid transparent;
 	border-image: url("../img/prickly_border.png") 48 round;
+	padding: 0 20px 20px 20px;
 	background-color: var(--bg-color);
 	background-clip: padding-box;
 }
@@ -436,10 +438,6 @@ img {
 	color: var(--heading-color);
 }
 
-#content {
-	padding: 0 20px 20px 20px;
-}
-
 #copyright {
 	z-index: 1;
 	margin: 0;
@@ -520,6 +518,7 @@ img {
 
 	.prickly {
 		border-image-source: url("../img/prickly_border_mobile.png");
+		padding: 0;
 	}
 
 	.dark .prickly {
@@ -546,10 +545,6 @@ img {
 	}
 
 	/*----------ID Elements----------*/
-
-	#content {
-		padding: 0;
-	}
 
 	#cactus {
 		width: 192px;
