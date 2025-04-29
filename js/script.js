@@ -399,7 +399,7 @@ function cactusPosition() {
 	if (windowW > MAX_WIDTH) { // calculate desktop position
 		cactusT = Math.round(constrain(
 			dialog.position().top + dialog.height() - 0.55*cactusW,
-			0, windowH - cactusW));
+			0, windowH - cactusW - 4));
 		cactusL = Math.round(constrain(
 			dialog.position().left - cactusW,
 			0, windowW - cactusW));
