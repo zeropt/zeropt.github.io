@@ -15,7 +15,7 @@ const PROJECT_LIST_PATH = "projects/projectlist.json";
 
 // Dune movement parameters
 const DUNE_NUM = 6;
-const MAX_DUNE_PARALLAX = 6;
+const MAX_DUNE_PARALLAX = 10;
 const DUNE_WIDTH = 512; // pxart width
 const DUNE_HEIGHT = 216; // pxart height
 const DUNE_PX_SCALE = 5; // image pixels per pxart pixel
