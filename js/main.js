@@ -125,8 +125,18 @@ function buildProjectMenu(projects) {
 			.attr("href", "#project-" + projects[i].id)
 			.addClass("button")
 			.addClass("click0");
-		project.append($("<h2>").text(projects[i].title));
-		project.append($("<p>").text(projects[i].description));
+		if (projects[i].thumb) {
+			project.append($("<div>")
+				.addClass("thumbnail")
+				.append($("<img>").attr(
+					"src", 
+					PROJECT_DIR + projects[i].id + "/" + projects[i].thumb
+				)));
+		}
+		project.append($("<div>")
+			.addClass("description")
+			.append($("<h2>").text(projects[i].title))
+			.append($("<p>").text(projects[i].description)));
 
 		// Append menu item
 		$("#projects").append(project);

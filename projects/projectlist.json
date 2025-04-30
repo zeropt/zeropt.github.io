@@ -2,13 +2,15 @@
 	"projects": [
 		{
 			"id": "test",
-			"title": "Test Project 1",
-			"description": "This is just a test project."
+			"thumb": "img/hollow.webp",
+			"title": "Test Project",
+			"description": "This is just a placeholder project. Click to see more placeholder text!"
 		},
 		{
 			"id": "test2",
+			"thumb": null,
 			"title": "Test Project 2 Electric Boogaloo",
-			"description": "This is also just a test project."
+			"description": "This is also just a placeholder project but with no thumbnail."
 		}
 	]
 }

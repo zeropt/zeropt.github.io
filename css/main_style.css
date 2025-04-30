@@ -25,7 +25,7 @@
 .dark {
 	--theme-color: #262626;
 	--bg-color: #262626;
-	--border-color: lavenderblush;
+	--border-color: dimgray;
 	--text-color: lavenderblush;
 }
 
@@ -228,7 +228,7 @@ a {
 /*----------------------------------Buttons-----------------------------------*/
 
 .button {
-	margin: 4px;
+	margin: 4px 0;
 	border: 12px solid transparent;
 	border-image: url("img/button_border.png") 12 round;
 	padding: 8px 4px 0 4px;
@@ -280,8 +280,10 @@ a {
 /*-----------------------------Navigation Buttons-----------------------------*/
 
 .nav .button {
-	padding-left: 32px;
-	padding-right: 32px;
+	margin-left: 4px;
+	margin-right: 4px;
+	padding-left: 2rem;
+	padding-right: 2rem;
 	font-size: 1.25em;
 	color: var(--text-color);
 }
@@ -380,30 +382,6 @@ a {
 
 .dark #mute-btn {
 	background-image: url("img/mute_sprites_dark.png"); /* sprite sheet */
-}
-
-/*--------------------------------Project Menu--------------------------------*/
-
-#projects {
-	/* Flex Container */
-	display: flex;
-	flex-flow: column nowrap;
-	justify-content: flex-start;
-	align-items: stretch;
-}
-
-#projects .button {
-	padding-left: 32px;
-	padding-right: 32px;
-	color: var(--text-color);
-}
-
-.spring #projects .button {
-	--heading-color: var(--text-color);
-}
-
-.spring.dark #projects .button {
-	color: var(--text-color);
 }
 
 /*--------------------------------ID Elements---------------------------------*/
