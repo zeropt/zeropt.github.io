@@ -1,5 +1,5 @@
 /**
- * script.js
+ * main.js
  * Author: Riley Mann
  * 
  * Main script for zeropt.github.io
@@ -270,10 +270,9 @@ function loadPage(locHash) {
 		$(".exit-bar").removeClass("hidden");
 		$(".back-btn").hide();
 		$("#projects").hide();
-		$.get("pages/aboutme.html")
+		$.get("aboutme.html")
 			.done(function(data){
 				$("#content").html(data);
-				fixContentPaths("pages/");
 			})
 			.fail(function(){
 				console.log("failed to load aboutme.html");
@@ -288,10 +287,9 @@ function loadPage(locHash) {
 		$(".exit-bar").removeClass("hidden");
 		$(".back-btn").hide();
 		$("#projects").show();
-		$.get("pages/projects.html")
+		$.get("projects.html")
 			.done(function(data){
 				$("#content").html(data);
-				fixContentPaths("pages/");
 			})
 			.fail(function(){
 				console.log("failed to load projects.html");
@@ -306,10 +304,9 @@ function loadPage(locHash) {
 		$(".exit-bar").removeClass("hidden");
 		$(".back-btn").hide();
 		$("#projects").hide();
-		$.get("pages/links.html")
+		$.get("links.html")
 			.done(function(data){
 				$("#content").html(data);
-				fixContentPaths("pages/");
 				// add button sounds
 				$("#content .button").on({
 					mouseenter: function(){playSprite("hover");},
@@ -330,10 +327,9 @@ function loadPage(locHash) {
 		$(".exit-bar").removeClass("hidden");
 		$(".back-btn").hide();
 		$("#projects").hide();
-		$.get("pages/contact.html")
+		$.get("contact.html")
 			.done(function(data){
 				$("#content").html(data);
-				fixContentPaths("pages/");
 			})
 			.fail(function(){
 				console.log("failed to load contact.html");
@@ -369,10 +365,9 @@ function loadPage(locHash) {
 			$(".subpage").hide();
 			$(".exit-bar").addClass("hidden");
 			$("#projects").hide();
-			$.get("pages/welcome.html")
+			$.get("welcome.html")
 				.done(function(data){
 					$("#content").html(data);
-					fixContentPaths("pages/");
 				})
 				.fail(function(){
 					console.log("failed to load welcome.html");

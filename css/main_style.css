@@ -1,5 +1,5 @@
 /**
- * style.css
+ * main_style.css
  * Author: Riley Mann
  * 
  * Main stylesheet for zeropt.github.io
@@ -37,13 +37,13 @@
 html {
 	height: 100%;
 	background-image:
-		url("../img/dunescape_layer_5.png"),
-		url("../img/dunescape_layer_4.png"),
-		url("../img/dunescape_layer_3.png"),
-		url("../img/dunescape_layer_2.png"),
-		url("../img/dunescape_layer_1.png"),
-		url("../img/dunescape_layer_0.png"),
-		url("../img/dunescape_sky.png");
+		url("img/dunescape_layer_5.png"),
+		url("img/dunescape_layer_4.png"),
+		url("img/dunescape_layer_3.png"),
+		url("img/dunescape_layer_2.png"),
+		url("img/dunescape_layer_1.png"),
+		url("img/dunescape_layer_0.png"),
+		url("img/dunescape_sky.png");
 	background-position: center, center, center, center, center, center, center;
 	background-size: cover, cover, cover, cover, cover, cover, cover;
 	background-color: var(--theme-color);
@@ -51,20 +51,20 @@ html {
 
 html.dark {
 	background-image:
-		url("../img/dunescape_layer_5_dark.png"),
-		url("../img/dunescape_layer_4_dark.png"),
-		url("../img/dunescape_layer_3_dark.png"),
-		url("../img/dunescape_layer_2_dark.png"),
-		url("../img/dunescape_layer_1_dark.png"),
-		url("../img/dunescape_layer_0_dark.png"),
-		url("../img/dunescape_sky_dark.png");
+		url("img/dunescape_layer_5_dark.png"),
+		url("img/dunescape_layer_4_dark.png"),
+		url("img/dunescape_layer_3_dark.png"),
+		url("img/dunescape_layer_2_dark.png"),
+		url("img/dunescape_layer_1_dark.png"),
+		url("img/dunescape_layer_0_dark.png"),
+		url("img/dunescape_sky_dark.png");
 	background-position: center, center, center, center, center, center, center;
 	background-size: cover, cover, cover, cover, cover, cover, cover;
 }
 
 @font-face {
 	font-family: SimpleScript;
-	src: url("../font/Simple_Script_Wide_Lowers.ttf");
+	src: url("font/Simple_Script_Wide_Lowers.ttf");
 }
 
 body {
@@ -95,11 +95,11 @@ img {
 }
 
 .spring ul {
-	list-style-image: url("../img/bullet_point.gif");
+	list-style-image: url("img/bullet_point.gif");
 }
 
 .spring.dark ul {
-	list-style-image: url("../img/bullet_point_dark.gif");
+	list-style-image: url("img/bullet_point_dark.gif");
 }
 
 /*-------------------------------Flexbox Layout-------------------------------*/
@@ -195,25 +195,25 @@ img {
 
 .prickly {
 	border: 48px solid transparent;
-	border-image: url("../img/prickly_border.png") 48 round;
+	border-image: url("img/prickly_border.png") 48 round;
 	padding: 0 20px 20px 20px;
 	background-color: var(--bg-color);
 	background-clip: padding-box;
 }
 
 .dark .prickly {
-	border-image-source: url("../img/prickly_border_dark.png");
+	border-image-source: url("img/prickly_border_dark.png");
 }
 
 .simple-border {
 	margin: 8px;
 	padding: 16px;
 	border: 8px solid transparent;
-	border-image: url("../img/simple_border.png") 8 round;
+	border-image: url("img/simple_border.png") 8 round;
 }
 
 .dark .simple-border {
-	border-image-source: url("../img/simple_border_dark.png");
+	border-image-source: url("img/simple_border_dark.png");
 }
 
 /*----------------------------------Buttons-----------------------------------*/
@@ -221,7 +221,7 @@ img {
 .button {
 	margin: 4px;
 	border: 12px solid transparent;
-	border-image: url("../img/button_border.png") 12 round;
+	border-image: url("img/button_border.png") 12 round;
 	padding: 8px 4px 0 4px;
 	background-color: lemonchiffon;
 	background-clip: padding-box;
@@ -233,39 +233,39 @@ img {
 .button:hover {
 	padding-top: 4px;
 	padding-bottom: 4px;
-	border-image-source: url("../img/button_border_raised.png");
+	border-image-source: url("img/button_border_raised.png");
 }
 
 .button:active {
 	padding-top: 8px;
 	padding-bottom: 0;
-	border-image-source: url("../img/button_border.png");
+	border-image-source: url("img/button_border.png");
 }
 
 .spring .button {
-	border-image-source: url("../img/button_border_spring.png");
+	border-image-source: url("img/button_border_spring.png");
 	background-color: lightpink;
 }
 
 .spring .button:hover {
-	border-image-source: url("../img/button_border_spring_raised.png");
+	border-image-source: url("img/button_border_spring_raised.png");
 }
 
 .spring .button:active {
-	border-image-source: url("../img/button_border_spring.png");
+	border-image-source: url("img/button_border_spring.png");
 }
 
 .dark .button {
-	border-image-source: url("../img/button_border_dark.png");
+	border-image-source: url("img/button_border_dark.png");
 	background-color: #262626;
 }
 
 .dark .button:hover {
-	border-image-source: url("../img/button_border_dark_raised.png");
+	border-image-source: url("img/button_border_dark_raised.png");
 }
 
 .dark .button:active {
-	border-image-source: url("../img/button_border_dark.png");
+	border-image-source: url("img/button_border_dark.png");
 }
 
 .dark.spring .button {
@@ -338,7 +338,7 @@ img {
 	width: 64px;
 	height: 64px;
 	margin: 4px 16px 4px 4px;
-	background-image: url("../img/theme_sprites.png"); /* sprite sheet */
+	background-image: url("img/theme_sprites.png"); /* sprite sheet */
 }
 
 #theme-btn:hover {
@@ -357,7 +357,7 @@ img {
 	width: 64px;
 	height: 64px;
 	margin: 4px 8px;
-	background-image: url("../img/mute_sprites.png"); /* sprite sheet */
+	background-image: url("img/mute_sprites.png"); /* sprite sheet */
 }
 
 #mute-btn.muted {
@@ -373,7 +373,7 @@ img {
 }
 
 .dark #mute-btn {
-	background-image: url("../img/mute_sprites_dark.png"); /* sprite sheet */
+	background-image: url("img/mute_sprites_dark.png"); /* sprite sheet */
 }
 
 /*--------------------------------Project Menu--------------------------------*/
@@ -428,7 +428,7 @@ img {
 	padding: 0;
 	border: none;
 	background-color: transparent;
-	background-image: url("../img/cactus.png");
+	background-image: url("img/cactus.png");
 	background-size: 100%;
 }
 
@@ -493,12 +493,12 @@ img {
 	/*----------Prickly Border----------*/
 
 	.prickly {
-		border-image-source: url("../img/prickly_border_mobile.png");
+		border-image-source: url("img/prickly_border_mobile.png");
 		padding: 0;
 	}
 
 	.dark .prickly {
-		border-image-source: url("../img/prickly_border_mobile_dark.png");
+		border-image-source: url("img/prickly_border_mobile_dark.png");
 	}
 
 	/*----------Close & Back Buttons----------*/
