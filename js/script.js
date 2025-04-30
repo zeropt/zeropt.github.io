@@ -123,6 +123,7 @@ function buildProjectMenu(projects) {
 		// Build menu item
 		const project = $("<a>")
 			.attr("href", "#project-" + projects[i].id)
+			.addClass("button")
 			.addClass("click0");
 		project.append($("<h2>").text(projects[i].title));
 		project.append($("<p>").text(projects[i].description));
@@ -309,6 +310,12 @@ function loadPage(locHash) {
 			.done(function(data){
 				$("#content").html(data);
 				fixContentPaths("pages/");
+				// add button sounds
+				$("#content .button").on({
+					mouseenter: function(){playSprite("hover");},
+					mousedown: function(){playSprite("click0Down");},
+					mouseup: function(){playSprite("click0Up");}
+				});
 			})
 			.fail(function(){
 				console.log("failed to load links.html");

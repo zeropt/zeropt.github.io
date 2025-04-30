@@ -1,6 +1,85 @@
 <!DOCTYPE html>
 <html>
+<head>
+	<style>
+		.links {
+			max-width: 600px;
+		}
+
+		.links-menu {
+			margin-top: 1em;
+			display: flex;
+			flex-flow: row wrap;
+			justify-content: center;
+		}
+
+		.links-menu a {
+			padding-left: 20px;
+			padding-right: 20px;
+		}
+
+		.links-menu a > p {
+			text-align: center;
+		}
+
+		.logo {
+			width: 128px;
+			height: 128px;
+		}
+
+		.dark .logo {
+			background-position-y: -128px;
+		}
+
+		.dark.spring .logo {
+			background-position-y: -256px;
+		}
+	</style>
+</head>
 <body>
-	<a href="https://www.printables.com/@zeropt_434511">Printables</a>
+	<div class="links">
+		<h1>Links</h1>
+		<p>
+			If you want more to explore, here are some links to acounts I post to
+			with varying frequency.
+		</p>
+		<div class="links-menu">
+			<a class="button"
+				href="https://github.com/zeropt" target="_blank">
+				<div class="logo"
+					style="background-image: url(pages/img/github_logo.png);">
+					</div>
+				<p>GitHub</p>
+			</a>
+			<a class="button"
+				href="https://www.linkedin.com/in/rileeemann/" target="_blank">
+				<div class="logo"
+					style="background-image: url(pages/img/linkedin_logo.png);">
+					</div>
+				<p>LinkedIn</p>
+			</a>
+			<a class="button"
+				href="https://www.printables.com/@zeropt_434511" target="_blank">
+				<div class="logo"
+					style="background-image: url(pages/img/printables_logo.png);">
+					</div>
+				<p>Printables</p>
+			</a>
+			<a class="button"
+				href="https://www.thingiverse.com/zeropt/designs" target="_blank">
+				<div class="logo"
+					style="background-image: url(pages/img/thingiverse_logo.png);">
+					</div>
+				<p>Thingiverse</p>
+			</a>
+			<a class="button"
+				href="https://www.youtube.com/@zeropt9362" target="_blank">
+				<div class="logo"
+					style="background-image: url(pages/img/youtube_logo.png);">
+					</div>
+				<p>YouTube</p>
+			</a>
+		</div>
+	</div>
 </body>
 </html>

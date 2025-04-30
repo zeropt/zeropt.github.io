@@ -216,62 +216,76 @@ img {
 	border-image-source: url("../img/simple_border_dark.png");
 }
 
-/*-----------------------------Navigation Buttons-----------------------------*/
+/*----------------------------------Buttons-----------------------------------*/
 
-.nav > a {
-	margin: 4px 4px;
-	padding: 8px 32px 0 32px;
+.button {
+	margin: 4px;
 	border: 12px solid transparent;
 	border-image: url("../img/button_border.png") 12 round;
+	padding: 8px 4px 0 4px;
 	background-color: lemonchiffon;
 	background-clip: padding-box;
 	font-family: inherit;
-	font-size: 1.25em; /* 20px */
 	color: inherit;
 	text-decoration: none;
 }
 
-.nav > a:hover {
+.button:hover {
 	padding-top: 4px;
 	padding-bottom: 4px;
 	border-image-source: url("../img/button_border_raised.png");
 }
 
-.nav > a:active {
+.button:active {
 	padding-top: 8px;
 	padding-bottom: 0;
 	border-image-source: url("../img/button_border.png");
 }
 
-.spring .nav > a {
+.spring .button {
 	border-image-source: url("../img/button_border_spring.png");
 	background-color: lightpink;
 }
 
-.spring .nav > a:hover {
+.spring .button:hover {
 	border-image-source: url("../img/button_border_spring_raised.png");
 }
 
-.spring .nav > a:active {
+.spring .button:active {
 	border-image-source: url("../img/button_border_spring.png");
 }
 
-.dark .nav > a {
+.dark .button {
 	border-image-source: url("../img/button_border_dark.png");
 	background-color: #262626;
+}
+
+.dark .button:hover {
+	border-image-source: url("../img/button_border_dark_raised.png");
+}
+
+.dark .button:active {
+	border-image-source: url("../img/button_border_dark.png");
+}
+
+.dark.spring .button {
+	color: plum;
+}
+
+/*-----------------------------Navigation Buttons-----------------------------*/
+
+.nav .button {
+	padding-left: 32px;
+	padding-right: 32px;
+	font-size: 1.25em; /* 20px */
+}
+
+.dark .nav .button {
 	color: lemonchiffon;
 	font-weight: bold;
 }
 
-.dark .nav > a:hover {
-	border-image-source: url("../img/button_border_dark_raised.png");
-}
-
-.dark .nav > a:active {
-	border-image-source: url("../img/button_border_dark.png");
-}
-
-.dark.spring .nav > a {
+.dark.spring .nav .button {
 	color: plum;
 }
 
@@ -372,55 +386,17 @@ img {
 	align-items: stretch;
 }
 
-#projects > a {
-	margin: 4px 4px;
-	padding: 8px 32px 0 32px;
-	border: 12px solid transparent;
-	border-image: url("../img/button_border.png") 12 round;
-	background-color: lemonchiffon;
-	background-clip: padding-box;
-	font-family: inherit;
-	color: inherit;
-	text-decoration: none;
+#projects .button {
+	padding-left: 32px;
+	padding-right: 32px;
 }
 
-#projects > a:hover {
-	padding-top: 4px;
-	padding-bottom: 4px;
-	border-image-source: url("../img/button_border_raised.png");
-}
-
-#projects > a:active {
-	padding-top: 8px;
-	padding-bottom: 0;
-	border-image-source: url("../img/button_border.png");
-}
-
-.spring #projects > a {
+.spring #projects .button {
 	--heading-color: var(--text-color);
-	border-image-source: url("../img/button_border_spring.png");
-	background-color: lightpink;
 }
 
-.spring #projects > a:hover {
-	border-image-source: url("../img/button_border_spring_raised.png");
-}
-
-.spring #projects > a:active {
-	border-image-source: url("../img/button_border_spring.png");
-}
-
-.dark #projects > a {
-	border-image-source: url("../img/button_border_dark.png");
-	background-color: #262626;
-}
-
-.dark #projects > a:hover {
-	border-image-source: url("../img/button_border_dark_raised.png");
-}
-
-.dark #projects > a:active {
-	border-image-source: url("../img/button_border_dark.png");
+.spring.dark #projects .button {
+	color: var(--text-color);
 }
 
 /*--------------------------------ID Elements---------------------------------*/
