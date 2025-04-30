@@ -13,7 +13,7 @@
 	--border-color: black;
 	--text-color: black;
 	--heading-color: black;
-	--link-color: #b0c4de;
+	--link-color: lightsteelblue;
 	--button-color: lemonchiffon;
 }
 
@@ -112,6 +112,11 @@ a {
 
 .spring.dark ul {
 	list-style-image: url("img/bullet_point_dark.gif");
+}
+
+code {
+	tab-size: 3;
+	text-wrap: wrap;
 }
 
 /*-------------------------------Flexbox Layout-------------------------------*/

@@ -362,6 +362,7 @@ function loadPage(locHash) {
 				.done(function(data){
 					$("#content").html(marked.parse(data));
 					fixContentPaths(path);
+					highlightContent();
 				})
 				.fail(function(){
 					console.log("failed to load " + projectID + ".md");
@@ -394,6 +395,14 @@ function fixContentPaths(path) {
 	$("#content img").each(function(){
 		const oldSrc = $(this).attr("src");
 		$(this).attr("src", path + oldSrc);
+	});
+}
+
+// Applies syntax highlighting to all code blocks within #content using
+// highlight.js
+function highlightContent() {
+	$("#content code").each(function(){
+		hljs.highlightElement($(this)[0]);
 	});
 }
 
