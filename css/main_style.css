@@ -10,16 +10,18 @@
 :root {
 	--theme-color: lemonchiffon;
 	--bg-color: white;
-	--highlight-color: lemonchiffon;
 	--border-color: black;
 	--text-color: black;
-	--heading-color: var(--text-color);
+	--heading-color: black;
+	--link-color: #b0c4de;
+	--button-color: lemonchiffon;
 }
 
 .spring {
 	--theme-color: lightpink;
-	--highlight-color: lightpink;
-	--heading-color: var(--highlight-color);
+	--heading-color: lightpink;
+	--link-color: lightpink;
+	--button-color: lightpink;
 }
 
 .dark {
@@ -27,11 +29,16 @@
 	--bg-color: #262626;
 	--border-color: dimgray;
 	--text-color: lavenderblush;
+	--heading-color: lavenderblush;
+	--link-color: lemonchiffon;
+	--button-color: #393939;
 }
 
 .spring.dark {
 	--theme-color: #262626;
-	--highlight-color: plum;
+	--heading-color: plum;
+	--link-color: plum;
+	--button-color: #393939;
 }
 
 html {
@@ -96,11 +103,7 @@ img {
 }
 
 a {
-	color: var(--text-color);
-}
-
-.spring a {
-	color: var(--highlight-color);
+	color: var(--link-color);
 }
 
 .spring ul {
@@ -232,7 +235,7 @@ a {
 	border: 12px solid transparent;
 	border-image: url("img/button_border.png") 12 round;
 	padding: 8px 4px 0 4px;
-	background-color: lemonchiffon;
+	background-color: var(--button-color);
 	background-clip: padding-box;
 	font-family: inherit;
 	color: inherit;
@@ -253,7 +256,6 @@ a {
 
 .spring .button {
 	border-image-source: url("img/button_border_spring.png");
-	background-color: lightpink;
 }
 
 .spring .button:hover {
@@ -266,7 +268,6 @@ a {
 
 .dark .button {
 	border-image-source: url("img/button_border_dark.png");
-	background-color: #262626;
 }
 
 .dark .button:hover {
