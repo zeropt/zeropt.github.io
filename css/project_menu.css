@@ -49,11 +49,11 @@
 	height: 100%;
 }
 
-.spring #projects .description > h2 {
+.spring #projects .description > h3 {
 	color: var(--text-color);
 }
 
-.dark.spring #projects .description > h2 {
+.dark.spring #projects .description > h3 {
 	color: var(--heading-color);
 }
 

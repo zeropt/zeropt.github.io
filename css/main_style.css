@@ -204,6 +204,7 @@ code {
 }
 
 .scrollable {
+	padding: 0 1.5rem;
 	overflow-x: hidden;
 	overflow-y: auto; /* scrollable */
 }
@@ -213,7 +214,7 @@ code {
 .prickly {
 	border: 48px solid transparent;
 	border-image: url("img/prickly_border.png") 48 round;
-	padding: 0 20px 20px 20px;
+	padding-bottom: 1rem;
 	background-color: var(--bg-color);
 	background-clip: padding-box;
 }
@@ -401,6 +402,10 @@ code {
 	color: var(--text-color);
 }
 
+#content {
+	max-width: 80ch;
+}
+
 #copyright {
 	z-index: 1;
 	margin: 0;
@@ -469,6 +474,10 @@ code {
 		flex-flow: row wrap;
 		justify-content: flex-end;
 		align-items: flex-start;
+	}
+
+	.scrollable {
+		padding: 0;
 	}
 
 	/*----------Hide Desktop Elements----------*/
