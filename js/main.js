@@ -135,7 +135,7 @@ function buildProjectMenu(projects) {
 		}
 		project.append($("<div>")
 			.addClass("description")
-			.append($("<h3>").text(projects[i].title))
+			.append($("<h2>").text(projects[i].title))
 			.append($("<p>").text(projects[i].description)));
 
 		// Append menu item
