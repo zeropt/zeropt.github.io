@@ -150,7 +150,11 @@ function themeInit() {
 	if (localStorage.theme) data.settings.theme = localStorage.theme;
 	else localStorage.theme = data.settings.theme;
 	// Configure dark theme if so
-	if (data.settings.theme == "dark") $("html").addClass("dark");
+	if (data.settings.theme == "dark") {
+		$("html").addClass("dark");
+		$("#hljs-light").prop("disabled", true);
+		$("#hljs-dark").prop("disabled", false);
+	}
 }
 
 // Connects sounds to button events
@@ -460,9 +464,13 @@ function toggleTheme() {
 	if (data.settings.theme == "dark") {
 		data.settings.theme = "light";
 		$("html").removeClass("dark");
+		$("#hljs-light").prop("disabled", false);
+		$("#hljs-dark").prop("disabled", true);
 	} else {
 		data.settings.theme = "dark";
 		$("html").addClass("dark");
+		$("#hljs-light").prop("disabled", true);
+		$("#hljs-dark").prop("disabled", false);
 	}
 
 	localStorage.theme = data.settings.theme; // set local storage
