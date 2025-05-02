@@ -152,6 +152,7 @@ code.hljs {
 }
 
 .main {
+	width: 100%;
 	min-height: 0;
 	max-height: 100%;
 	/* Flex Container */
@@ -159,11 +160,6 @@ code.hljs {
 	flex-flow: column nowrap;
 	justify-content: center;
 	align-items: center;
-}
-
-.main div {
-	min-height: 0;
-	max-height: 100%;
 }
 
 .settings {
@@ -200,16 +196,34 @@ code.hljs {
 }
 
 #cactus-dialog {
+	min-height: 0;
+	max-height: 100%;
 	/* Flex Container */
 	display: flex;
 	flex-flow: column nowrap;
 	align-items: center;
 }
 
+#cactus-dialog.max {
+	width: min(110ch, 100%);
+}
+
+#cactus-dialog > div {
+	min-height: 0;
+	max-height: 100%;
+}
+
 .scrollable {
+	min-height: 0;
+	max-height: 100%;
 	padding: 0 1.5rem;
 	overflow-x: hidden;
 	overflow-y: auto; /* scrollable */
+	/* Flex Container */
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: flex-start;
+	align-items: center;
 }
 
 /*----------------------------------Borders-----------------------------------*/
@@ -217,13 +231,16 @@ code.hljs {
 .prickly {
 	border: 48px solid transparent;
 	border-image: url("img/prickly_border.png") 48 round;
-	padding-bottom: 1rem;
 	background-color: var(--bg-color);
 	background-clip: padding-box;
 }
 
 .dark .prickly {
 	border-image-source: url("img/prickly_border_dark.png");
+}
+
+#cactus-dialog.max > .prickly {
+	width: calc(100% - 96px);
 }
 
 .simple-border {
@@ -406,7 +423,7 @@ code.hljs {
 }
 
 #content {
-	max-width: 100ch;
+	max-width: 80ch;
 }
 
 #copyright {
@@ -442,6 +459,10 @@ code.hljs {
 
 	body {
 		font-size: 0.75rem;
+	}
+
+	img {
+		max-height: 90vh;
 	}
 
 	/*----------Flexbox Layout----------*/
@@ -494,7 +515,6 @@ code.hljs {
 
 	.prickly {
 		border-image-source: url("img/prickly_border_mobile.png");
-		padding: 0;
 	}
 
 	.dark .prickly {

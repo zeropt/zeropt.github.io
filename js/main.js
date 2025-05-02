@@ -277,6 +277,9 @@ function loadPage(locHash) {
 	// Clear content box
 	$("#content").empty();
 
+	// disable full width content
+	$("#cactus-dialog").removeClass("max");
+
 	// About me page
 	if (locHash == "#aboutme") {
 		$(".welcome").hide();
@@ -365,6 +368,7 @@ function loadPage(locHash) {
 			$.get(path + projectID + ".md")
 				.done(function(data){
 					$("#content").html(marked.parse(data));
+					$("#cactus-dialog").addClass("max"); // full width content
 					fixContentPaths(path);
 					highlightContent();
 				})
