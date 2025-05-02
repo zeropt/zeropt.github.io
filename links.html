@@ -11,9 +11,13 @@
 		}
 
 		.links a {
-			padding-left: 24px;
-			padding-right: 24px;
+			width: calc(96px + 3.5em);
+			height: calc(96px + 3.5em);
 			color: var(--text-color);
+			display: flex;
+			flex-flow: column nowrap;
+			justify-content: center;
+			align-items: center;
 		}
 
 		.dark.spring .links a {
@@ -25,21 +29,27 @@
 		}
 
 		.logo {
-			width: 128px;
-			height: 128px;
+			width: 96px;
+			height: 96px;
 		}
 
 		.dark .logo {
-			background-position-y: -128px;
+			background-position-y: -96px;
 		}
 
 		.dark.spring .logo {
-			background-position-y: -256px;
+			background-position-y: -192px;
+		}
+
+		@media (max-width: 800px) { /* Mobile styling */
+			.links a {
+				width: 96px;
+			}
 		}
 	</style>
 </head>
 <body>
-	<div style="max-width: 640px;">
+	<div style="max-width: 60ch;">
 		<h1>Links</h1>
 		<p>
 			If you want more to explore, here are some links to acounts I post to
