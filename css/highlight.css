@@ -36,11 +36,11 @@ code.hljs {
 .dark .hljs-selector-tag,
 .dark .hljs-literal,
 .dark .hljs-selector-id {
-	color: lightgreen;
+	color: #00ffaa; /* Darker Aquamarine */
 }
 
 .hljs-number {
-	color: #ffbe4d;
+	color: #ffbe4d; /* Darker Moccasin */
 }
 
 .dark .hljs-number {
@@ -108,7 +108,7 @@ code.hljs {
 
 .dark .hljs-string,
 .dark .hljs-symbol {
-	color: #f3a5f3;
+	color: #f3a5f3; /* Lighter Violet */
 }
 
 .hljs-comment,
@@ -141,7 +141,7 @@ code.hljs {
 .hljs-title.class_,
 .hljs-class .hljs-title,
 .hljs-section {
-	color: #262626;
+	color: dimgray;
 }
 
 .dark .hljs-code,
@@ -149,4 +149,12 @@ code.hljs {
 .dark .hljs-class .hljs-title,
 .dark .hljs-section {
 	color: white;
+}
+
+.hljs-title {
+	color: rosybrown;
+}
+
+.dark .hljs-title {
+	color: lavender;
 }
