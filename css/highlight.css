@@ -1,0 +1,152 @@
+/**
+ * highlight.css
+ * 
+ * Custom syntax highlighting stylesheet for highlight.js
+ * 
+ * Created on 2 May 2025
+ */
+
+pre code.hljs {
+	display: block;
+	overflow-x: auto;
+	padding: 1em
+}
+
+code.hljs {
+	padding: 3px 5px
+}
+
+.hljs {
+	background: var(--background-color);
+	color: #393939;
+}
+
+.dark .hljs {
+	color: lavenderblush;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-literal,
+.hljs-selector-id {
+	color: mediumseagreen;
+}
+
+.dark .hljs-keyword,
+.dark .hljs-selector-tag,
+.dark .hljs-literal,
+.dark .hljs-selector-id {
+	color: lightgreen;
+}
+
+.hljs-number {
+	color: #ffbe4d;
+}
+
+.dark .hljs-number {
+	color: lemonchiffon;
+}
+
+.hljs-attribute {
+	color: cornflowerblue;
+}
+
+.hljs-regexp,
+.hljs-link {
+	color: tomato;
+}
+
+.dark .hljs-regexp,
+.dark .hljs-link {
+	color: lightsalmon;
+}
+
+.hljs-meta {
+	color: #b2c2cd;
+}
+
+.dark .hljs-meta {
+	color: #557182;
+}
+
+.hljs-tag,
+.hljs-name,
+.hljs-bullet,
+.hljs-subst,
+.hljs-emphasis,
+.hljs-type,
+.hljs-built_in,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-addition,
+.hljs-variable,
+.hljs-template-tag,
+.hljs-template-variable {
+	color: steelblue;
+}
+
+.dark .hljs-tag,
+.dark .hljs-name,
+.dark .hljs-bullet,
+.dark .hljs-subst,
+.dark .hljs-emphasis,
+.dark .hljs-type,
+.dark .hljs-built_in,
+.dark .hljs-selector-attr,
+.dark .hljs-selector-pseudo,
+.dark .hljs-addition,
+.dark .hljs-variable,
+.dark .hljs-template-tag,
+.dark .hljs-template-variable {
+	color: lightsteelblue;
+}
+
+.hljs-string,
+.hljs-symbol {
+	color: hotpink;
+}
+
+.dark .hljs-string,
+.dark .hljs-symbol {
+	color: #f3a5f3;
+}
+
+.hljs-comment,
+.hljs-quote,
+.hljs-deletion {
+	color: gray;
+}
+
+.hljs-selector-class {
+	color: thistle;
+}
+
+.dark .hljs-selector-class {
+	color: mediumpurple;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-literal,
+.hljs-doctag,
+.hljs-title,
+.hljs-section,
+.hljs-type,
+.hljs-name,
+.hljs-strong {
+	font-weight: bold;
+}
+
+.hljs-code,
+.hljs-title.class_,
+.hljs-class .hljs-title,
+.hljs-section {
+	color: #262626;
+}
+
+.dark .hljs-code,
+.dark .hljs-title.class_,
+.dark .hljs-class .hljs-title,
+.dark .hljs-section {
+	color: white;
+}
