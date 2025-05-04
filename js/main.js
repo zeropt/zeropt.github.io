@@ -15,7 +15,8 @@ const PROJECT_LIST_PATH = "projects/projectlist.json";
 
 // Dune movement parameters
 const DUNE_NUM = 6;
-const MAX_DUNE_PARALLAX = 10;
+const MAX_DUNE_PARALLAX_X = 6;
+const MAX_DUNE_PARALLAX_Y = 10;
 const DUNE_WIDTH = 512; // pxart width
 const DUNE_HEIGHT = 216; // pxart height
 const DUNE_PX_SCALE = 5; // image pixels per pxart pixel
@@ -72,7 +73,6 @@ function setup() {
 	sizeDunes();
 	$(window).on({
 		resize: sizeDunes,
-		scroll: scrollDunes
 	});
 	$(document).on("mousemove", moveDunes);
 
@@ -183,8 +183,8 @@ function attachSounds() {
 function sizeDunes() {
 	const win = {w: $(window).width(), h: $(window).height()};
 	const maxDune = {
-		w: DUNE_WIDTH - 2*MAX_DUNE_PARALLAX,
-		h: DUNE_HEIGHT - 2*MAX_DUNE_PARALLAX
+		w: DUNE_WIDTH - 2*MAX_DUNE_PARALLAX_X,
+		h: DUNE_HEIGHT - 2*MAX_DUNE_PARALLAX_Y
 	};
 	const taller = win.h < (maxDune.h * win.w) / maxDune.w;
 	data.pxartScale = taller ? win.w / maxDune.w : win.h / maxDune.h;
@@ -198,14 +198,11 @@ function sizeDunes() {
 	style += imgWidth + "px";
 	$("html").css("background-size", style);
 
-	if (win.w > MAX_WIDTH) { // Desktop: center dunescape images
-		style = "";
-		for (let i = 0; i < DUNE_NUM; i++) style += "center, ";
-		style += "center";
-		$("html").css("background-position", style);
-	} else { // Mobile: reposition dunescape images
-		scrollDunes();
-	}
+	// Center dunescape images
+	style = "";
+	for (let i = 0; i < DUNE_NUM; i++) style += "center, ";
+	style += "center";
+	$("html").css("background-position", style);
 }
 
 // Creates a parallax effect using the mouse cursor position (Desktop)
@@ -216,8 +213,8 @@ function moveDunes(event) {
 
 		// Calculate parallax
 		const parallax = {
-			x: 2 * MAX_DUNE_PARALLAX * (0.5*win.w - mouse.x) / win.w,
-			y: 2 * MAX_DUNE_PARALLAX * (0.5*win.h - mouse.y) / win.h
+			x: 2 * MAX_DUNE_PARALLAX_X * (0.5*win.w - mouse.x) / win.w,
+			y: 2 * MAX_DUNE_PARALLAX_Y * (0.5*win.h - mouse.y) / win.h
 		};
 		const start = {
 			x: 0.5 * (win.w - data.pxartScale * DUNE_WIDTH),
@@ -236,34 +233,6 @@ function moveDunes(event) {
 		// Set dunescape img positions
 		$("html").css("background-position", style);
 	}
-}
-
-// Creates a parallax effect using the scroll posiiton (Mobile)
-function scrollDunes() {
-	const win = {w: $(window).width(), h: $(window).height()};
-	const page = {w: $(".layout").width(), h: $(".layout").height()};
-	const scroll = $(window).scrollTop();
-
-	// Calculate parallax
-	const parallaxY = (page.h == win.h) ? MAX_DUNE_PARALLAX :
-		2 * MAX_DUNE_PARALLAX * (0.5*(page.h - win.h) - scroll)
-		/ (page.h - win.h);
-	const start = {
-		x: 0.5 * (win.w - data.pxartScale * DUNE_WIDTH),
-		y: 0.5 * (win.h - data.pxartScale * DUNE_HEIGHT) + scroll
-	};
-	let style = "";
-	for (let i = 0; i < DUNE_NUM; i++) {
-		const x = Math.round(start.x);
-		const y = Math.round(
-			start.y + data.pxartScale * Math.round(parallaxY / (i + 1)));
-		style += x + "px " + y + "px, ";
-	}
-	style += 
-		Math.round(start.x) + "px " + Math.round(start.y) + "px"; // center sky
-
-	// Set dunescape img positions
-	$("html").css("background-position", style);
 }
 
 /*---------------------------------Content------------------------------------*/

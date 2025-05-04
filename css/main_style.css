@@ -54,6 +54,7 @@ html {
 	background-position: center, center, center, center, center, center, center;
 	background-size: cover, cover, cover, cover, cover, cover, cover;
 	background-color: var(--theme-color);
+	background-attachment: fixed;
 }
 
 html.dark {
@@ -123,12 +124,12 @@ code {
 
 pre {
 	margin-bottom: 2em;
-	overflow-x: auto;
 }
 
 pre code {
 	display: block;
 	padding: 1em;
+	overflow-x: auto;
 	tab-size: 3;
 }
 
