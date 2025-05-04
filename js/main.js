@@ -330,6 +330,7 @@ function loadPage(locHash) {
 					$("#content").html(marked.parse(data));
 					$("#cactus-dialog").addClass("max"); // full width content
 					fixContentPaths(path);
+					fixContentLinks();
 					highlightContent();
 				})
 				.fail(function(){
@@ -363,6 +364,14 @@ function fixContentPaths(path) {
 	$("#content img").each(function(){
 		const oldSrc = $(this).attr("src");
 		$(this).attr("src", path + oldSrc);
+	});
+}
+
+
+// Sets links in #content to open in a new tab
+function fixContentLinks() {
+	$("#content a").each(function(){
+		$(this).attr("target", "_blank");
 	});
 }
 
