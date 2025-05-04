@@ -509,6 +509,10 @@ pre code {
 		align-items: flex-start;
 	}
 
+	.footer {
+		margin-top: 210px;
+	}
+
 	.scrollable {
 		padding: 0;
 	}

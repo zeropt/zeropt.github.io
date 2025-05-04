@@ -71,9 +71,7 @@ $(document).ready(setup);
 function setup() {
 	// Background
 	sizeDunes();
-	$(window).on({
-		resize: sizeDunes,
-	});
+	$(window).resize(sizeDunes);
 	$(document).on("mousemove", moveDunes);
 
 	// Howler
@@ -103,13 +101,10 @@ function setup() {
 			loadPage(location.hash);
 			window.onhashchange = function(){loadPage(location.hash);};
 
-			// Reposition the cactus on window resize
-			$(window).resize(function(){
-				const position = cactusPosition();
-				$("#cactus").css({
-					"top": position.top + "px",
-					"left": position.left + "px",
-				});
+			// Reposition the cactus on window resize and scroll
+			$(window).on({
+				resize: moveCactus,
+				scroll: moveCactus
 			});
 		});
 }
@@ -381,7 +376,7 @@ function highlightContent() {
 
 /*-----------------------------------Cactus-----------------------------------*/
 
-// Returns the cactus position relative to the dialog box
+// Returns the target position next to the dialog box
 function cactusPosition() {
 	const dialog = $("#cactus-dialog");
 	const windowW = $(window).width();
@@ -398,13 +393,22 @@ function cactusPosition() {
 			dialog.position().left - cactusW,
 			0, windowW - cactusW));
 	} else { // calculate mobile position
-		cactusT = Math.round(
-			dialog.position().top + dialog.height() + 0.05*cactusW);
+		cactusT = Math.round(dialog.position().top - $(window).scrollTop()
+			+ dialog.height() + 0.05*cactusW);
 		cactusL = Math.round(0.5*windowW - 0.52*cactusW);
 	}
 
 	// return position data
 	return {top: cactusT, left: cactusL};
+}
+
+// Moves the cactus next to the dialog box
+function moveCactus() {
+	const position = cactusPosition();
+	$("#cactus").css({
+		"top": position.top + "px",
+		"left": position.left + "px",
+	});
 }
 
 // Animate the cactus and dialog box for subpage changes
