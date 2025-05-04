@@ -6,57 +6,59 @@
  * Created on 2 May 2025
  */
 
-.hljs {
-	background: var(--background-color);
-	color: #393939;
+:root {
+	--hljs-bg-color: #f9f9ff;
+	--hljs-text-color: #393939;
+	--hljs-keyword-color: mediumseagreen;
+	--hljs-number-color: #ffbe4d; /* Darker Moccasin */
+	--hljs-link-color: tomato;
+	--hljs-meta-color: #b2c2cd;
+	--hljs-var-color: steelblue;
+	--hljs-string-color: hotpink;
+	--hljs-comment-color: darkgray;
+	--hljs-selector-class-color: #bb90bb; /* Darker Thistle */
+	--hljs-title-color: rosybrown;
+	--hljs-code-color: dimgray;
 }
 
-.dark .hljs {
-	color: lavenderblush;
+.dark {
+	--hljs-bg-color: #2a2a2a;
+	--hljs-text-color: lavenderblush;
+	--hljs-keyword-color: #00ffaa; /* Darker Aquamarine */
+	--hljs-number-color: lemonchiffon;
+	--hljs-link-color: lightsalmon;
+	--hljs-meta-color: #557182;
+	--hljs-var-color: lightsteelblue;
+	--hljs-string-color: #f3a5f3; /* Lighter Violet */
+	--hljs-comment-color: gray;
+	--hljs-selector-class-color: mediumpurple;
+	--hljs-title-color: lavender;
+	--hljs-code-color: white;
+}
+
+.hljs {
+	background: var(--hljs-bg-color);
+	color: var(--hljs-text-color);
 }
 
 .hljs-keyword,
 .hljs-selector-tag,
 .hljs-literal,
 .hljs-selector-id {
-	color: mediumseagreen;
-}
-
-.dark .hljs-keyword,
-.dark .hljs-selector-tag,
-.dark .hljs-literal,
-.dark .hljs-selector-id {
-	color: #00ffaa; /* Darker Aquamarine */
+	color: var(--hljs-keyword-color);
 }
 
 .hljs-number {
-	color: #ffbe4d; /* Darker Moccasin */
-}
-
-.dark .hljs-number {
-	color: lemonchiffon;
-}
-
-.hljs-attribute {
-	color: cornflowerblue;
+	color: var(--hljs-number-color);
 }
 
 .hljs-regexp,
 .hljs-link {
-	color: tomato;
-}
-
-.dark .hljs-regexp,
-.dark .hljs-link {
-	color: lightsalmon;
+	color: var(--hljs-link-color);
 }
 
 .hljs-meta {
-	color: #b2c2cd;
-}
-
-.dark .hljs-meta {
-	color: #557182;
+	color: var(--hljs-meta-color);
 }
 
 .hljs-tag,
@@ -72,47 +74,34 @@
 .hljs-variable,
 .hljs-template-tag,
 .hljs-template-variable {
-	color: steelblue;
-}
-
-.dark .hljs-tag,
-.dark .hljs-name,
-.dark .hljs-bullet,
-.dark .hljs-subst,
-.dark .hljs-emphasis,
-.dark .hljs-type,
-.dark .hljs-built_in,
-.dark .hljs-selector-attr,
-.dark .hljs-selector-pseudo,
-.dark .hljs-addition,
-.dark .hljs-variable,
-.dark .hljs-template-tag,
-.dark .hljs-template-variable {
-	color: lightsteelblue;
+	color: var(--hljs-var-color);
 }
 
 .hljs-string,
 .hljs-symbol {
-	color: hotpink;
-}
-
-.dark .hljs-string,
-.dark .hljs-symbol {
-	color: #f3a5f3; /* Lighter Violet */
+	color: var(--hljs-string-color);
 }
 
 .hljs-comment,
 .hljs-quote,
 .hljs-deletion {
-	color: gray;
+	color: var(--hljs-comment-color);
 }
 
 .hljs-selector-class {
-	color: thistle;
+	color: var(--hljs-selector-class-color);
 }
 
-.dark .hljs-selector-class {
-	color: mediumpurple;
+.hljs-title,
+.hljs-attribute {
+	color: var(--hljs-title-color);
+}
+
+.hljs-code,
+.hljs-title.class_,
+.hljs-class .hljs-title,
+.hljs-section {
+	color: var(--hljs-code-color);
 }
 
 .hljs-keyword,
@@ -125,26 +114,4 @@
 .hljs-name,
 .hljs-strong {
 	font-weight: bold;
-}
-
-.hljs-code,
-.hljs-title.class_,
-.hljs-class .hljs-title,
-.hljs-section {
-	color: dimgray;
-}
-
-.dark .hljs-code,
-.dark .hljs-title.class_,
-.dark .hljs-class .hljs-title,
-.dark .hljs-section {
-	color: white;
-}
-
-.hljs-title {
-	color: rosybrown;
-}
-
-.dark .hljs-title {
-	color: lavender;
 }
