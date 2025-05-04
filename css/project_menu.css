@@ -8,7 +8,7 @@
  */
 
 #projects {
-	max-width: 70ch;
+	max-width: 80ch;
 	/* Flex Container */
 	display: flex;
 	flex-flow: column nowrap;
