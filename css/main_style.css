@@ -65,7 +65,7 @@ html.dark {
 		url("img/dunescape_layer_2_dark.png"),
 		url("img/dunescape_layer_1_dark.png"),
 		url("img/dunescape_layer_0_dark.png"),
-		url("img/dunescape_sky_dark.png");
+		url("img/dunescape_sky_dark.gif");
 	background-position: center, center, center, center, center, center, center;
 	background-size: cover, cover, cover, cover, cover, cover, cover;
 }
