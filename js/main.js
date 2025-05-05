@@ -179,7 +179,7 @@ function sizeDunes() {
 	const win = {w: $(window).width(), h: $(window).height()};
 	const maxDune = {
 		w: DUNE_WIDTH - 2*MAX_DUNE_PARALLAX_X,
-		h: DUNE_HEIGHT - 2*MAX_DUNE_PARALLAX_Y
+		h: DUNE_HEIGHT - MAX_DUNE_PARALLAX_Y
 	};
 	const taller = win.h < (maxDune.h * win.w) / maxDune.w;
 	data.pxartScale = taller ? win.w / maxDune.w : win.h / maxDune.h;
@@ -196,7 +196,7 @@ function sizeDunes() {
 	// Center dunescape images
 	style = "";
 	for (let i = 0; i < DUNE_NUM; i++) style += "center, ";
-	style += "center";
+	style += "center top";
 	$("html").css("background-position", style);
 }
 
@@ -209,7 +209,7 @@ function moveDunes(event) {
 		// Calculate parallax
 		const parallax = {
 			x: 2 * MAX_DUNE_PARALLAX_X * (0.5*win.w - mouse.x) / win.w,
-			y: 2 * MAX_DUNE_PARALLAX_Y * (0.5*win.h - mouse.y) / win.h
+			y: 2 * MAX_DUNE_PARALLAX_Y * (win.h - mouse.y) / win.h
 		};
 		const start = {
 			x: 0.5 * (win.w - data.pxartScale * DUNE_WIDTH),
@@ -223,7 +223,7 @@ function moveDunes(event) {
 				start.y + data.pxartScale * Math.round(parallax.y / (i + 1)));
 			style += x + "px " + y + "px, ";
 		}
-		style += "center"; // center sky
+		style += "center top"; // center sky
 
 		// Set dunescape img positions
 		$("html").css("background-position", style);
