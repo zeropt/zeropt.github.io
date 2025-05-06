@@ -65,6 +65,9 @@ const spriteVolume = {
 
 /*-----------------------------------Setup------------------------------------*/
 
+// Theme
+themeInit();
+
 $(document).ready(setup);
 
 // Runs once when the document is ready
@@ -89,7 +92,6 @@ function setup() {
 			$("#projects").text("empty for now :(");
 		})
 		.always(function(){ // run the rest of the setup
-			themeInit();
 			attachSounds();
 
 			// Connect settings buttons
