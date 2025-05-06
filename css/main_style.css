@@ -44,12 +44,12 @@
 html {
 	height: 100%;
 	background-image:
-		url("img/dunescape_layer_5.png"),
-		url("img/dunescape_layer_4.png"),
-		url("img/dunescape_layer_3.png"),
-		url("img/dunescape_layer_2.png"),
-		url("img/dunescape_layer_1.png"),
-		url("img/dunescape_layer_0.png"),
+		url("img/dunescape_layer_5.webp"),
+		url("img/dunescape_layer_4.webp"),
+		url("img/dunescape_layer_3.webp"),
+		url("img/dunescape_layer_2.webp"),
+		url("img/dunescape_layer_1.webp"),
+		url("img/dunescape_layer_0.webp"),
 		url("img/dunescape_sky.png");
 	background-position:
 		center,
@@ -81,13 +81,13 @@ html {
 
 html.dark {
 	background-image:
-		url("img/dunescape_layer_5_dark.png"),
-		url("img/dunescape_layer_4_dark.png"),
-		url("img/dunescape_layer_3_dark.png"),
-		url("img/dunescape_layer_2_dark.png"),
-		url("img/dunescape_layer_1_dark.png"),
-		url("img/dunescape_layer_0_dark.png"),
-		url("img/dunescape_sky_dark.gif");
+		url("img/dunescape_layer_5_dark.webp"),
+		url("img/dunescape_layer_4_dark.webp"),
+		url("img/dunescape_layer_3_dark.webp"),
+		url("img/dunescape_layer_2_dark.webp"),
+		url("img/dunescape_layer_1_dark.webp"),
+		url("img/dunescape_layer_0_dark.webp"),
+		url("img/dunescape_sky_dark.webp");
 }
 
 @font-face {
