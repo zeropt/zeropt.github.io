@@ -43,51 +43,7 @@
 
 html {
 	height: 100%;
-	background-image:
-		url("img/sandscape_layer_5.webp"),
-		url("img/sandscape_layer_4.webp"),
-		url("img/sandscape_layer_3.webp"),
-		url("img/sandscape_layer_2.webp"),
-		url("img/sandscape_layer_1.webp"),
-		url("img/sandscape_layer_0.webp"),
-		url("img/sandscape_sky.webp");
-	background-position:
-		center,
-		center,
-		center,
-		center,
-		center,
-		center,
-		center top;
-	background-size:
-		cover,
-		cover,
-		cover,
-		cover,
-		cover,
-		cover,
-		cover;
-	background-repeat:
-		no-repeat,
-		no-repeat,
-		no-repeat,
-		no-repeat,
-		no-repeat,
-		no-repeat,
-		no-repeat;
 	background-color: var(--theme-color);
-	background-attachment: fixed;
-}
-
-html.dark {
-	background-image:
-		url("img/sandscape_layer_5_dark.webp"),
-		url("img/sandscape_layer_4_dark.webp"),
-		url("img/sandscape_layer_3_dark.webp"),
-		url("img/sandscape_layer_2_dark.webp"),
-		url("img/sandscape_layer_1_dark.webp"),
-		url("img/sandscape_layer_0_dark.webp"),
-		url("img/sandscape_sky_dark.webp");
 }
 
 @font-face {
@@ -459,7 +415,6 @@ pre code {
 }
 
 #copyright {
-	z-index: 1;
 	margin: 0;
 	font-family: Verdana, sans-serif;
 	font-size: 0.75rem;

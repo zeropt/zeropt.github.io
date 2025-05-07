@@ -13,26 +13,13 @@ const MAX_WIDTH = 800; // max width for mobile styling
 const PROJECT_DIR = "projects/";
 const PROJECT_LIST_PATH = "projects/projectlist.json";
 
-// Dune movement parameters
-const DUNE_NUM = 6;
-const MAX_DUNE_PARALLAX_X = 6;
-const MAX_DUNE_PARALLAX_Y = 10;
-const DUNE_WIDTH = 512; // pxart width
-const DUNE_HEIGHT = 216; // pxart height
-const DUNE_PX_SCALE = 5; // image pixels per pxart pixel
-
-// Image sizing parameters
-const MAX_IMG_WIDTH = 0.75; // times of container width
-const MAX_IMG_HEIGHT = 0.5; // times of container height
-
 // Global data
 const data = {
 	settings: { // default settings
 		theme: "light",
 		muted: false
 	},
-	projectIDs: [], // to be populated later
-	pxartScale: DUNE_PX_SCALE,
+	projectIDs: [] // to be populated later
 };
 
 // Create howler sprites
@@ -73,9 +60,9 @@ $(document).ready(setup);
 // Runs once when the document is ready
 function setup() {
 	// Background
-	sizeDunes();
-	$(window).resize(sizeDunes);
-	$(document).on("mousemove", moveDunes);
+	sandscapeInit();
+	$(window).resize(sandscapeOnResize);
+	$(document).on("mousemove", sandscapeOnMouseMove);
 
 	// Howler
 	sounds.once("loaderror", function(){
@@ -174,63 +161,6 @@ function attachSounds() {
 }
 
 /*---------------------------------Background---------------------------------*/
-
-// Sets the size of the dunescape background images according to the window
-// dimensions
-function sizeDunes() {
-	const win = {w: $(window).width(), h: $(window).height()};
-	const maxDune = {
-		w: DUNE_WIDTH - 2*MAX_DUNE_PARALLAX_X,
-		h: DUNE_HEIGHT - MAX_DUNE_PARALLAX_Y
-	};
-	const taller = win.h < (maxDune.h * win.w) / maxDune.w;
-	data.pxartScale = taller ? win.w / maxDune.w : win.h / maxDune.h;
-
-	// Calculate dunescape image size
-	const imgWidth = Math.round(data.pxartScale * DUNE_WIDTH);
-
-	// Set dunescape img sizes
-	let style = "";
-	for (let i = 0; i < DUNE_NUM; i++) style += imgWidth + "px, ";
-	style += imgWidth + "px";
-	$("html").css("background-size", style);
-
-	// Center dunescape images
-	style = "";
-	for (let i = 0; i < DUNE_NUM; i++) style += "center, ";
-	style += "center top";
-	$("html").css("background-position", style);
-}
-
-// Creates a parallax effect using the mouse cursor position (Desktop)
-function moveDunes(event) {
-	const win = {w: $(window).width(), h: $(window).height()};
-	if (win.w > MAX_WIDTH) { // only if desktop styled
-		const mouse = {x: event.pageX, y: event.pageY};
-
-		// Calculate parallax
-		const parallax = {
-			x: 2 * MAX_DUNE_PARALLAX_X * (0.5*win.w - mouse.x) / win.w,
-			y: 2 * MAX_DUNE_PARALLAX_Y * (win.h - mouse.y) / win.h
-		};
-		const start = {
-			x: 0.5 * (win.w - data.pxartScale * DUNE_WIDTH),
-			y: 0.5 * (win.h - data.pxartScale * DUNE_HEIGHT)
-		};
-		let style = "";
-		for (let i = 0; i < DUNE_NUM; i++) {
-			const x = Math.round(
-				start.x + data.pxartScale * Math.round(parallax.x / (i + 1)));
-			const y = Math.round(
-				start.y + data.pxartScale * Math.round(parallax.y / (i + 1)));
-			style += x + "px " + y + "px, ";
-		}
-		style += "center top"; // center sky
-
-		// Set dunescape img positions
-		$("html").css("background-position", style);
-	}
-}
 
 /*---------------------------------Content------------------------------------*/
 
