@@ -83,11 +83,11 @@ a {
 }
 
 .spring ul {
-	list-style-image: url("img/bullet_point.gif");
+	list-style-image: url("img/bullet_point.webp");
 }
 
 .spring.dark ul {
-	list-style-image: url("img/bullet_point_dark.gif");
+	list-style-image: url("img/bullet_point_dark.webp");
 }
 
 li {
@@ -222,24 +222,13 @@ pre code {
 
 .prickly {
 	border: 48px solid transparent;
-	border-image: url("img/prickly_border.png") 48 round;
+	border-image: url("img/prickly_border.webp") 48 round;
 	background-color: var(--bg-color);
 	background-clip: padding-box;
 }
 
 .dark .prickly {
-	border-image-source: url("img/prickly_border_dark.png");
-}
-
-.simple-border {
-	margin: 8px;
-	padding: 16px;
-	border: 8px solid transparent;
-	border-image: url("img/simple_border.png") 8 round;
-}
-
-.dark .simple-border {
-	border-image-source: url("img/simple_border_dark.png");
+	border-image-source: url("img/prickly_border_dark.webp");
 }
 
 /*----------------------------------Buttons-----------------------------------*/
@@ -247,7 +236,7 @@ pre code {
 .button {
 	margin: 4px 0;
 	border: 12px solid transparent;
-	border-image: url("img/button_border.png") 12 round;
+	border-image: url("img/button_border.webp") 12 round;
 	padding: 8px 4px 0 4px;
 	background-color: var(--button-color);
 	background-clip: padding-box;
@@ -259,37 +248,37 @@ pre code {
 .button:hover {
 	padding-top: 4px;
 	padding-bottom: 4px;
-	border-image-source: url("img/button_border_raised.png");
+	border-image-source: url("img/button_border_raised.webp");
 }
 
 .button:active {
 	padding-top: 8px;
 	padding-bottom: 0;
-	border-image-source: url("img/button_border.png");
+	border-image-source: url("img/button_border.webp");
 }
 
 .spring .button {
-	border-image-source: url("img/button_border_spring.png");
+	border-image-source: url("img/button_border_spring.webp");
 }
 
 .spring .button:hover {
-	border-image-source: url("img/button_border_spring_raised.png");
+	border-image-source: url("img/button_border_spring_raised.webp");
 }
 
 .spring .button:active {
-	border-image-source: url("img/button_border_spring.png");
+	border-image-source: url("img/button_border_spring.webp");
 }
 
 .dark .button {
-	border-image-source: url("img/button_border_dark.png");
+	border-image-source: url("img/button_border_dark.webp");
 }
 
 .dark .button:hover {
-	border-image-source: url("img/button_border_dark_raised.png");
+	border-image-source: url("img/button_border_dark_raised.webp");
 }
 
 .dark .button:active {
-	border-image-source: url("img/button_border_dark.png");
+	border-image-source: url("img/button_border_dark.webp");
 }
 
 /*-----------------------------Navigation Buttons-----------------------------*/
@@ -361,7 +350,7 @@ pre code {
 	width: 64px;
 	height: 64px;
 	margin: 4px 16px 4px 4px;
-	background-image: url("img/theme_sprites.png"); /* sprite sheet */
+	background-image: url("img/theme_sprites.webp"); /* sprite sheet */
 }
 
 #theme-btn:hover {
@@ -380,11 +369,7 @@ pre code {
 	width: 64px;
 	height: 64px;
 	margin: 4px 8px;
-	background-image: url("img/mute_sprites.png"); /* sprite sheet */
-}
-
-#mute-btn.muted {
-	background-position-y: -64px;
+	background-image: url("img/mute_sprites.webp"); /* sprite sheet */
 }
 
 #mute-btn:hover {
@@ -395,8 +380,16 @@ pre code {
 	background-position-x: 0;
 }
 
+#mute-btn.muted {
+	background-position-y: -64px;
+}
+
 .dark #mute-btn {
-	background-image: url("img/mute_sprites_dark.png"); /* sprite sheet */
+	background-position-y: -128px;
+}
+
+.dark #mute-btn.muted {
+	background-position-y: -192px;
 }
 
 /*--------------------------------ID Elements---------------------------------*/
@@ -501,11 +494,11 @@ pre code {
 	/*----------Prickly Border----------*/
 
 	.prickly {
-		border-image-source: url("img/prickly_border_mobile.png");
+		border-image-source: url("img/prickly_border_mobile.webp");
 	}
 
 	.dark .prickly {
-		border-image-source: url("img/prickly_border_mobile_dark.png");
+		border-image-source: url("img/prickly_border_mobile_dark.webp");
 	}
 
 	/*----------Close & Back Buttons----------*/
