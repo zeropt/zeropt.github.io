@@ -12,41 +12,71 @@
 	height: 100vh;
 	position: fixed;
 	z-index: -1;
+	background-image: url("img/sky.webp");
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: center top;
+	background-size: cover;
+}
+
+.dark #sandscape {
+	background-image: url("img/sky_dark.webp");
+}
+
+@keyframes cloudsin {
+	from {opacity: 0%;}
+	to {opacity: 100%;}
+}
+
+@keyframes cloudsout {
+	from {opacity: 25%;}
+	to {opacity: 0%;}
+}
+
+#clouds {
+	width: 100vw;
+	height: 100vh;
+	position: fixed;
+	background-image:
+		url("img/clouds_layer_0.webp"),
+		url("img/clouds_layer_1.webp");
+	background-repeat: repeat-x;
+	background-attachment: fixed;
+	background-position: center top;
+	background-size: cover;
+	animation-name: cloudsin;
+	animation-duration: 500ms;
+}
+
+.dark #clouds {
+	opacity: 0%;
+	animation-name: cloudsout;
+	animation-duration: 500ms;
+}
+
+#dunes {
+	width: 100vw;
+	height: 100vh;
+	position: fixed;
 	background-image:
 		url("img/sandscape_layer_5.webp"),
 		url("img/sandscape_layer_4.webp"),
 		url("img/sandscape_layer_3.webp"),
 		url("img/sandscape_layer_2.webp"),
 		url("img/sandscape_layer_1.webp"),
-		url("img/sandscape_layer_0.webp"),
-		url("img/sandscape_sky.webp");
+		url("img/sandscape_layer_0.webp");
 	background-repeat: no-repeat;
 	background-attachment: fixed;
-	background-position:
-		center,
-		center,
-		center,
-		center,
-		center,
-		center,
-		center top;
-	background-size:
-		cover,
-		cover,
-		cover,
-		cover,
-		cover,
-		cover,
-		cover;
+	background-position: center;
+	background-size: cover;
 }
 
-.dark #sandscape {
+.dark #dunes {
 	background-image:
 		url("img/sandscape_layer_5_dark.webp"),
 		url("img/sandscape_layer_4_dark.webp"),
 		url("img/sandscape_layer_3_dark.webp"),
 		url("img/sandscape_layer_2_dark.webp"),
 		url("img/sandscape_layer_1_dark.webp"),
-		url("img/sandscape_layer_0_dark.webp"),
-		url("img/sandscape_sky_dark.webp");
+		url("img/sandscape_layer_0_dark.webp");
 }
