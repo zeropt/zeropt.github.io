@@ -4,7 +4,7 @@ May 2025
 
 ![welcome page light themed](img/welcome_light.webp)
 
-I recently got inspired to make a fun personal website that I could share with friends and potential employers. The original goal was to be a place where I could collect and write about my personal projects but this quickly turned into another fun project of its own where I had to relearn the basics of HTML, CSS, and JavaScript.
+I was recently inspired to make a fun personal website that I could share with friends and potential employers. The original goal was to simply collect and write about my personal projects but this quickly turned into another fun project of its own.
 
 <br>
 
@@ -17,9 +17,9 @@ These are the JavaScript libraries I used and what I used them for:
 
 <br>
 
-I'll link the GitHub repository [here](https://github.com/zeropt/zeropt.github.io) if you want to poke around.
+I'll link the GitHub repository [here](https://github.com/zeropt/zeropt.github.io) for if you want to poke around.
 
-In the following sections I'll write about aspects I found interesting and/or challenging.
+Three years ago, I took a class that introduced me to the basics of HTML, CSS, and JavaScript. I had unfortunately forgotten all but the core concepts. Things like anchor elements, jQuery callbacks, and almost the entirety of CSS had to be relearned. In the following sections I'll recount some aspects that I found interesting and/or challenging.
 
 <br>
 
@@ -117,9 +117,9 @@ Having never used these before, flexboxes took me a few days of tinkering to get
 
 *My sketch of the page using boxes for layout*
 
-These rows and columns can also be set to wrap. This is very useful for reacting to screen width but became the bane of my existence as I tried to figure out how to set the `width`, `min-width`, and `max-width` to get the flex items to wrap when I wanted them to. One quirk that caused me a lot of trouble was that flex items do not naturally shrink smaller than the size of the content they hold unless their `min-width` or `min-height` is set to 0.
+These rows and columns can also be set to wrap. This is very useful for reacting to screen width but became my biggest hurdle as I tried to figure out how to set the `width`, `min-width`, and `max-width` properties so that the flex items wrap when I wanted them to. One quirk that stumped me for a bit was that flex items do not naturally shrink smaller than the size of the content they hold unless their `min-width` or `min-height` is set to 0.
 
-Something that came in handy for making responsive element dimensions were the `min()` and `max()` CSS functions. These functions respectively return the smallest and largest of the values given to them. For example `width: min(100ch, 100%);` sets an element's width to 100 characters but allows it to collapse when the available space shrinks below that.
+Something that came in handy for making responsive element dimensions were the `min()` and `max()` CSS functions. These functions respectively output the smallest and largest of the values given to them. For example `width: min(100ch, 100%);` sets an element's width to 100 characters but allows it to collapse when the available space shrinks below that.
 
 Between the screen width media query and flexboxes that scale and wrap, the website should hopefully be usable on most screen sizes its viewed on.
 
@@ -127,7 +127,7 @@ Between the screen width media query and flexboxes that scale and wrap, the webs
 
 ## Final Thoughts
 
-I really enjoyed the process of relearning website basics and slowly tweaking the styling to get to the the result I have now. As always, there are still a couple of things I want to add such as twinkling stars to the currently starless night sky. I hope you enjoy playing with all the clicky buttons as much as I do and maybe feel inspired to make a fun personal website of your own if you haven't already.
+I really enjoyed the process of relearning how to build a simple website. Slowly tweaking the styling to get to the the result I have now was both exhausting and fulfilling as it slowly came together. As always, there are still a couple of things I want to add such as twinkling stars to the night sky which is starless at the time of writing. I hope you enjoy playing with all the clicky buttons as much as I do and maybe feel inspired to make a fun personal website of your own if you haven't already.
 
 Enjoy!
 
