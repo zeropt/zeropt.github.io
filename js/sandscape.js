@@ -23,6 +23,7 @@ const CLOUD_NUM = 2;
 const CLOUD_SPEED = [0.001, 0.004]; // pixel art pixel per ms
 
 const sandscapeData = {
+	mobile: false,
 	pixelScale: null,
 	w: null,
 	h: null,
@@ -34,10 +35,10 @@ const sandscapeData = {
 	cloudPos: [0, 0]
 };
 
-/*------------------------ Functions used by main.js -------------------------*/
+/*----------------------------- Main Functions -------------------------------*/
 
-function sandscapeInit() {
-	sandscapeOnResize(); // resize background images
+function sandscapeInit(mobile) {
+	sandscapeOnResize(mobile); // resize background images
 
 	// Start animation
 	sandscapeData.timestamp = document.timeline.currentTime;
@@ -45,14 +46,16 @@ function sandscapeInit() {
 	requestAnimationFrame(animateSandscape);
 }
 
-function sandscapeOnResize() {
+// Runs when the window is resized
+function sandscapeOnResize(mobile) {
+	sandscapeData.mobile = mobile;
 	sandscapeData.w = $("#sandscape").width();
 	sandscapeData.h = $("#sandscape").height();
 
 	// Calculate crop
 	let cropW = SANDSCAPE_WIDTH;
 	let cropH = SANDSCAPE_HEIGHT;
-	if (sandscapeData.w > MAX_WIDTH) {
+	if (!sandscapeData.mobile) {
 		cropW -= 2 * MAX_PARALLAX_X;
 		cropH -= MAX_PARALLAX_Y;
 	}
@@ -72,12 +75,13 @@ function sandscapeOnResize() {
 	setSandscapeSizes();
 }
 
+// Runs when the mouse is moved
 function sandscapeOnMouseMove(event) {
 	sandscapeData.mouseX = event.pageX;
 	sandscapeData.mouseY = event.pageY;
 }
 
-/*--------------------------- Background Functions ---------------------------*/
+/*----------------------------- Script Functions -----------------------------*/
 
 // Sets the size of the sandscape background images
 function setSandscapeSizes() {
@@ -124,7 +128,7 @@ function animateSandscape(timestamp) {
 	$("#clouds").css("background-position-x", style);
 
 	// Parallax
-	if (sandscapeData.w > MAX_WIDTH) { // only if desktop styled
+	if (!sandscapeData.mobile) { // only if desktop styled
 		// Lag behind mouse
 		sandscapeData.lagX += Math.min(PARALLAX_P * dt, 1.0)
 			* (sandscapeData.mouseX - sandscapeData.lagX);
@@ -146,10 +150,10 @@ function animateSandscape(timestamp) {
 		// Set sandscape img positions
 		style = "";
 		for (let i = 0; i < DUNE_NUM; i++) {
-			const x = Math.round(startX
-				+ sandscapeData.pixelScale * Math.round(parallaxX / (i + 1)));
-			const y = Math.round(startY
-				+ sandscapeData.pixelScale * Math.round(parallaxY / (i + 1)));
+			const x = startX
+				+ sandscapeData.pixelScale * Math.round(parallaxX / (i + 1));
+			const y = startY
+				+ sandscapeData.pixelScale * Math.round(parallaxY / (i + 1));
 			style += x + "px " + y + "px";
 			if (i < DUNE_NUM - 1) style += ",";
 		}
