@@ -13,6 +13,11 @@ const cactusData = {
 
 /*----------------------------- Main Functions -------------------------------*/
 
+function cactusInit(mobile) {
+	cactusData.mobile = mobile;
+	moveCactus();
+}
+
 // Runs when the window is resized
 function cactusOnResize(mobile) {
 	cactusData.mobile = mobile;

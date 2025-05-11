@@ -28,8 +28,9 @@ function setup() {
 	// Check if mobile
 	data.mobile = $(window).width() <= MOBILE_WIDTH;
 
-	// Initialize background
+	// Initialize background and cactus
 	sandscapeInit(data.mobile);
+	cactusInit(data.mobile);
 
 	// Window callbacks
 	$(window).on({
