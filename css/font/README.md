@@ -1,5 +1,13 @@
 # Fonts Used
 
+**Jersey 10:**
+
+Designed by Sarah Cadigan-Fried
+
+`Jersey10-Regular.ttf` was downloaded from Google Fonts.
+
+[Jersey 10](https://fonts.google.com/specimen/Jersey+10)
+
 **Simple Script:**
 
 Created by VEXED
