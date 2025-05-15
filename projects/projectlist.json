@@ -1,6 +1,12 @@
 {
 	"projects": [
 		{
+			"id": "microlr",
+			"thumb": "img/microlr_w_radio.webp",
+			"title": "Micro FPV Quadcopter",
+			"description": "Updating my 4\" FPV Quadcopter for 2025"
+		},
+		{
 			"id": "thiswebsite",
 			"thumb": "img/welcome_light.webp",
 			"title": "Personal Website: Cactus & Curios",
