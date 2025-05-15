@@ -1,4 +1,4 @@
-# Updating my 4" FPV Quadcopter for 2025
+# Updating a 4" FPV Quadcopter for 2025
 
 May 2025
 
@@ -72,7 +72,7 @@ I've also used HQProp's 4 inch bi-blades and Gemfan's folding tri-blades before.
 
 **Flight Controller + ESCs:** [GEPRC F411 35A AIO](https://geprc.com/product/gep-f411-35a-aio-f411-fc-35a-2-6s-8bits-bls-esc-25-5mm/)
 
-The Rekon 4 LR frame comes with both a 20\*20 and 25.5\*25.5 mm mounting pattern for the flight controller. I have used small 20\*20 mm stacks before with the flight controller and ESCs on separate boards. To keep the deck height as short as possible while leaving room for components such as a receiver and BEC, I opted for an all-in-one (AIO) with 25.5\*25.5 mm mounting. Buying a whole new AIO is expensive so I bought one with a current rating higher than I necessarily needed in the hope that my ESCs would never burn out. I don't think they make the exact one I have anymore but there are plenty of comparable all-in-one flight controllers on the market.
+The Rekon 4 LR frame comes with both a 20\*20 and 25.5\*25.5 mm mounting pattern for the flight controller. I have used small 20\*20 mm stacks before with the flight controller and ESCs on separate boards. To keep the deck height as short as possible while leaving room for components such as a receiver and BEC, I opted for an all-in-one (AIO) with 25.5\*25.5 mm mounting. Buying a whole new AIO is expensive so I bought one with a current rating higher than I necessarily needed in the hope that the ESCs would never burn out. I don't think they make the exact one I have anymore but there are plenty of comparable all-in-one flight controllers on the market.
 
 **Receiver:** AxisFlying ExpressLRS Thor Receiver [[GetFPV](https://www.getfpv.com/axisflying-elrs-2-4ghz-radio-receiver.html)] [[NBD](https://newbeedrone.com/products/axisflying-expresslrs-elrs-thor-receiver)] [[RDQ](https://www.racedayquads.com/products/axis-flying-elrs-2-4ghz-receiver)]
 
@@ -151,7 +151,7 @@ I love the small size of the Pocket but one disadvantage is the 250 mW maximum o
 
 ## Future Plans
 
-You made it to the end of this build log for my 4" FPV quadcopter! I plan to fly this iteration as is for the time being but I do have a few future modifications in mind.
+You made it to the end of this build log for my updated 4" FPV quadcopter! I plan to fly this iteration as is for the time being but I do have a few future modifications in mind.
 
 - **Fixed antenna:** The longer video antenna I used got ripped out in a crash. It broke where the coax cable meets the U.FL connector. When I get a replacement antenna, I plan to either glue the antenna to its TPU mount or update the mount so that a zip tie could be fed through it.
 - **Head-tracking controlled camera tilt:** The idea is to use a micro servo to tilt both cameras in the pitch axis. This would allow me to actively control the natural rate at which I'm flying all while keeping the horizon at a reasonable level. I have currently used up my weight budget but with a smaller battery and/or action camera, I might be able to fit that mechanism.
