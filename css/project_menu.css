@@ -11,7 +11,7 @@
 	max-width: 80ch;
 	/* Flex Container */
 	display: flex;
-	flex-flow: column nowrap;
+	flex-flow: column-reverse nowrap;
 	justify-content: flex-start;
 	align-items: stretch;
 }
