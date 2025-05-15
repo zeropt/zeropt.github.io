@@ -100,6 +100,8 @@ a {
 	color: var(--link-color);
 }
 
+ul, ol {padding-inline-start: 3em;}
+
 .spring ul {
 	list-style-image: url("img/bullet_point.webp");
 }
@@ -453,9 +455,9 @@ pre code {
 
 @media (max-width: 800px) {
 
-	img {
-		max-height: 90vh;
-	}
+	img {max-height: 90vh;}
+
+	ul, ol {padding-inline-start: 1.5em;}
 
 	/*----------Flexbox Layout----------*/
 
@@ -493,19 +495,13 @@ pre code {
 		align-items: flex-start;
 	}
 
-	.footer {
-		margin-top: 210px;
-	}
+	.footer {margin-top: 210px;}
 
-	.scrollable {
-		padding: 0;
-	}
+	.scrollable {padding: 0;}
 
 	/*----------Hide Desktop Elements----------*/
 
-	.desktop, .desktop * {
-		display: none;
-	}
+	.desktop, .desktop * {display: none;}
 
 	/*----------Prickly Border----------*/
 
@@ -532,9 +528,7 @@ pre code {
 
 	/*----------Settings Buttons----------*/
 
-	#theme-btn {
-		margin-right: 4px;
-	}
+	#theme-btn {margin-right: 4px;}
 
 	/*----------ID Elements----------*/
 
@@ -543,11 +537,7 @@ pre code {
 		height: 192px;
 	}
 
-	.dark #cactus {
-		background-position-y: -192px;
-	}
+	.dark #cactus {background-position-y: -192px;}
 
-	#cactus:active {
-		transform: translateY(3px);
-	}
+	#cactus:active {transform: translateY(3px);}
 }
