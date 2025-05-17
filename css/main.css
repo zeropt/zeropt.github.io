@@ -453,7 +453,7 @@ pre code {
 
 /*-------------------------------Mobile Styling-------------------------------*/
 
-@media (max-width: 800px) {
+@media screen and (max-width: 800px) {
 
 	img {max-height: 90vh;}
 
@@ -540,4 +540,44 @@ pre code {
 	.dark #cactus {background-position-y: -192px;}
 
 	#cactus:active {transform: translateY(3px);}
+}
+
+/*-------------------------------Print Styling--------------------------------*/
+
+@media print {
+	/*----------Flexbox Layout----------*/
+
+	.layout {
+		height: auto;
+		min-height: 100%;
+	}
+
+	.upper {
+		/* Flex Container */
+		flex-flow: row wrap;
+		justify-content: start;
+		align-items: flex-start;
+	}
+
+	.main {width: 100%;}
+
+	.settings {display: none;}
+
+	.scrollable {padding: 0;}
+
+	/*----------Borders----------*/
+
+	.prickly {border: none;}
+
+	/*----------Close & Back Buttons----------*/
+
+	.exit-bar {display: none;}
+
+	/*----------Hide Desktop Elements----------*/
+
+	.desktop, .desktop * {display: none;}
+
+	/*----------ID Elements----------*/
+
+	#cactus {display: none;}
 }
