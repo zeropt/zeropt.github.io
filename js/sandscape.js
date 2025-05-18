@@ -25,14 +25,13 @@ const CLOUD_SPEED = [0.001, 0.004]; // pixel art pixel per ms
 const sandscapeData = {
 	mobile: false,
 	pixelScale: null,
-	w: null,
-	h: null,
-	mouseX: null,
-	mouseY: null,
-	lagX: null,
-	lagY: null,
-	timestamp: null,
-	cloudPos: [0, 0]
+	w: null, h: null,
+	mouseX: null, mouseY: null,
+	lagX: null, lagY: null,
+	centerX: null, centerY: null,
+	cloudPos: [0, 0],
+	cloudTimestamp: null,
+	duneTimestap: null
 };
 
 /*----------------------------- Main Functions -------------------------------*/
@@ -41,9 +40,9 @@ function sandscapeInit(mobile) {
 	sandscapeOnResize(mobile); // resize background images
 
 	// Start animation
-	sandscapeData.timestamp = document.timeline.currentTime;
 	sandscapeData.cloudTimestamp = document.timeline.currentTime;
-	requestAnimationFrame(animateSandscape);
+	sandscapeData.duneTimestamp = document.timeline.currentTime;
+	requestAnimationFrame(animateClouds);
 }
 
 // Runs when the window is resized
@@ -70,6 +69,12 @@ function sandscapeOnResize(mobile) {
 	// Center lag positon
 	sandscapeData.lagX = 0.5 * sandscapeData.w;
 	sandscapeData.lagY = 0.5 * sandscapeData.h;
+
+	// Calculate centering offsets
+	sandscapeData.centerX = 0.5
+		* (sandscapeData.w - sandscapeData.pixelScale * SANDSCAPE_WIDTH);
+	sandscapeData.centerY = 0.5
+		* (sandscapeData.h - sandscapeData.pixelScale * SANDSCAPE_HEIGHT);
 
 	// Resize background images
 	setSandscapeSizes();
@@ -107,11 +112,10 @@ function setSandscapeSizes() {
 	$("#dunes").css("background-position", style);
 }
 
-// Animate background parallax and clouds
-function animateSandscape(timestamp) {
-	const dt = timestamp - sandscapeData.timestamp;
+// Animate clouds
+function animateClouds(timestamp) {
+	const dt = timestamp - sandscapeData.cloudTimestamp;
 
-	// Clouds
 	let style = "";
 	for (let i = 0; i < CLOUD_NUM; i++) {
 		sandscapeData.cloudPos[i] +=
@@ -127,40 +131,45 @@ function animateSandscape(timestamp) {
 	}
 	$("#clouds").css("background-position-x", style);
 
-	// Parallax
-	if (!sandscapeData.mobile) { // only if desktop styled
-		// Lag behind mouse
-		sandscapeData.lagX += Math.min(PARALLAX_P * dt, 1.0)
-			* (sandscapeData.mouseX - sandscapeData.lagX);
-		sandscapeData.lagY += Math.min(PARALLAX_P * dt, 1.0)
-			* (sandscapeData.mouseY - sandscapeData.lagY);
+	// Save timestamp
+	sandscapeData.cloudTimestamp = timestamp;
 
-		// Calculate parallax
-		const parallaxX = 2 * MAX_PARALLAX_X
-			* (0.5*sandscapeData.w - sandscapeData.lagX) / sandscapeData.w;
-		const parallaxY = 2 * MAX_PARALLAX_Y
-			* (sandscapeData.h - sandscapeData.lagY) / sandscapeData.h;
+	// Request new animation frame
+	if (sandscapeData.mobile) requestAnimationFrame(animateClouds);
+	else requestAnimationFrame(animateDunes);
+}
 
-		// Calculate starting offsets
-		const startX = 0.5
-			* (sandscapeData.w - sandscapeData.pixelScale * SANDSCAPE_WIDTH);
-		const startY = 0.5
-			* (sandscapeData.h - sandscapeData.pixelScale * SANDSCAPE_HEIGHT);
+// Animate dune parallax
+function animateDunes(timestamp) {
+	const dt = timestamp - sandscapeData.duneTimestamp;
 
-		// Set sandscape img positions
-		style = "";
-		for (let i = 0; i < DUNE_NUM; i++) {
-			const x = startX
-				+ sandscapeData.pixelScale * Math.round(parallaxX / (i + 1));
-			const y = startY
-				+ sandscapeData.pixelScale * Math.round(parallaxY / (i + 1));
-			style += x + "px " + y + "px";
-			if (i < DUNE_NUM - 1) style += ",";
-		}
-		$("#dunes").css("background-position", style);
+	// Lag behind mouse
+	sandscapeData.lagX += Math.min(PARALLAX_P * dt, 1.0)
+		* (sandscapeData.mouseX - sandscapeData.lagX);
+	sandscapeData.lagY += Math.min(PARALLAX_P * dt, 1.0)
+		* (sandscapeData.mouseY - sandscapeData.lagY);
+
+	// Calculate parallax
+	const parallaxX = 2 * MAX_PARALLAX_X
+		* (0.5*sandscapeData.w - sandscapeData.lagX) / sandscapeData.w;
+	const parallaxY = 2 * MAX_PARALLAX_Y
+		* (sandscapeData.h - sandscapeData.lagY) / sandscapeData.h;
+
+	// Set sandscape img positions
+	style = "";
+	for (let i = 0; i < DUNE_NUM; i++) {
+		const x = sandscapeData.centerX
+			+ sandscapeData.pixelScale * Math.round(parallaxX / (i + 1));
+		const y = sandscapeData.centerY
+			+ sandscapeData.pixelScale * Math.round(parallaxY / (i + 1));
+		style += x + "px " + y + "px";
+		if (i < DUNE_NUM - 1) style += ",";
 	}
+	$("#dunes").css("background-position", style);
 
-	// request another frame
-	sandscapeData.timestamp = timestamp;
-	requestAnimationFrame(animateSandscape);
+	// Save timestamp
+	sandscapeData.duneTimestamp = timestamp;
+
+	// Request new animation frame
+	requestAnimationFrame(animateClouds);
 }
