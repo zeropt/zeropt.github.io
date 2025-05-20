@@ -19,8 +19,7 @@ const PARALLAX_P = 0.004; // adjusts lag
 const MIN_PARALLAX_SPEED = 1;
 
 // Cloud parameters
-const CLOUD_NUM = 2;
-const CLOUD_SPEED = [0.001, 0.004]; // pixel art pixel per ms
+const CLOUD_INTERVAL = [1500, 400]; // ms
 
 const sandscapeData = {
 	mobile: false,
@@ -30,8 +29,7 @@ const sandscapeData = {
 	lagX: null, lagY: null,
 	centerX: null, centerY: null,
 	cloudPos: [0, 0],
-	cloudTimestamp: null,
-	duneTimestap: null
+	duneTimestamp: null
 };
 
 /*----------------------------- Main Functions -------------------------------*/
@@ -39,10 +37,14 @@ const sandscapeData = {
 function sandscapeInit(mobile) {
 	sandscapeOnResize(mobile); // resize background images
 
+	// Set cloud intervals
+	for (let i = 0; i < CLOUD_INTERVAL.length; i++) {
+		setInterval(moveCloud, CLOUD_INTERVAL[i], i);
+	}
+
 	// Start animation
-	sandscapeData.cloudTimestamp = document.timeline.currentTime;
 	sandscapeData.duneTimestamp = document.timeline.currentTime;
-	requestAnimationFrame(animateClouds);
+	requestAnimationFrame(animateDunes);
 }
 
 // Runs when the window is resized
@@ -112,31 +114,19 @@ function setSandscapeSizes() {
 	$("#dunes").css("background-position", style);
 }
 
-// Animate clouds
-function animateClouds(timestamp) {
-	const dt = timestamp - sandscapeData.cloudTimestamp;
+// Moves cloud
+function moveCloud(cloudIndex) {
+	// Move cloud
+	sandscapeData.cloudPos[cloudIndex] += sandscapeData.pixelScale;
+	sandscapeData.cloudPos[cloudIndex] %=
+		sandscapeData.pixelScale * SANDSCAPE_WIDTH;
 
 	let style = "";
-	for (let i = 0; i < CLOUD_NUM; i++) {
-		sandscapeData.cloudPos[i] +=
-			CLOUD_SPEED[i] * sandscapeData.pixelScale * dt;
-		if (sandscapeData.cloudPos[i] 
-			> sandscapeData.pixelScale * SANDSCAPE_WIDTH) {
-			sandscapeData.cloudPos[i] = 0;
-		}
-		style += 
-			(Math.round(sandscapeData.cloudPos[i] / sandscapeData.pixelScale)
-			* sandscapeData.pixelScale) + "px";
-		if (i < CLOUD_NUM - 1) style += ",";
+	for (let i = 0; i < CLOUD_INTERVAL.length; i++) {
+		style += (sandscapeData.centerX + sandscapeData.cloudPos[i]) + "px";
+		if (i < CLOUD_INTERVAL.length - 1) style += ",";
 	}
 	$("#clouds").css("background-position-x", style);
-
-	// Save timestamp
-	sandscapeData.cloudTimestamp = timestamp;
-
-	// Request new animation frame
-	if (sandscapeData.mobile) requestAnimationFrame(animateClouds);
-	else requestAnimationFrame(animateDunes);
 }
 
 // Animate dune parallax
@@ -171,5 +161,5 @@ function animateDunes(timestamp) {
 	sandscapeData.duneTimestamp = timestamp;
 
 	// Request new animation frame
-	requestAnimationFrame(animateClouds);
+	requestAnimationFrame(animateDunes);
 }
