@@ -133,29 +133,31 @@ function moveCloud(cloudIndex) {
 function animateDunes(timestamp) {
 	const dt = timestamp - sandscapeData.duneTimestamp;
 
-	// Lag behind mouse
-	sandscapeData.lagX += Math.min(PARALLAX_P * dt, 1.0)
-		* (sandscapeData.mouseX - sandscapeData.lagX);
-	sandscapeData.lagY += Math.min(PARALLAX_P * dt, 1.0)
-		* (sandscapeData.mouseY - sandscapeData.lagY);
+	if (!sandscapeData.mobile) {
+		// Lag behind mouse
+		sandscapeData.lagX += Math.min(PARALLAX_P * dt, 1.0)
+			* (sandscapeData.mouseX - sandscapeData.lagX);
+		sandscapeData.lagY += Math.min(PARALLAX_P * dt, 1.0)
+			* (sandscapeData.mouseY - sandscapeData.lagY);
 
-	// Calculate parallax
-	const parallaxX = 2 * MAX_PARALLAX_X
-		* (0.5*sandscapeData.w - sandscapeData.lagX) / sandscapeData.w;
-	const parallaxY = 2 * MAX_PARALLAX_Y
-		* (sandscapeData.h - sandscapeData.lagY) / sandscapeData.h;
+		// Calculate parallax
+		const parallaxX = 2 * MAX_PARALLAX_X
+			* (0.5*sandscapeData.w - sandscapeData.lagX) / sandscapeData.w;
+		const parallaxY = 2 * MAX_PARALLAX_Y
+			* (sandscapeData.h - sandscapeData.lagY) / sandscapeData.h;
 
-	// Set sandscape img positions
-	style = "";
-	for (let i = 0; i < DUNE_NUM; i++) {
-		const x = sandscapeData.centerX
-			+ sandscapeData.pixelScale * Math.round(parallaxX / (i + 1));
-		const y = sandscapeData.centerY
-			+ sandscapeData.pixelScale * Math.round(parallaxY / (i + 1));
-		style += x + "px " + y + "px";
-		if (i < DUNE_NUM - 1) style += ",";
+		// Set sandscape img positions
+		style = "";
+		for (let i = 0; i < DUNE_NUM; i++) {
+			const x = sandscapeData.centerX
+				+ sandscapeData.pixelScale * Math.round(parallaxX / (i + 1));
+			const y = sandscapeData.centerY
+				+ sandscapeData.pixelScale * Math.round(parallaxY / (i + 1));
+			style += x + "px " + y + "px";
+			if (i < DUNE_NUM - 1) style += ",";
+		}
+		$("#dunes").css("background-position", style);
 	}
-	$("#dunes").css("background-position", style);
 
 	// Save timestamp
 	sandscapeData.duneTimestamp = timestamp;
