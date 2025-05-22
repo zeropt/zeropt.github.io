@@ -31,7 +31,7 @@ function projectMenuInit(failCallback, alwaysCallback) {
 function buildProjectMenu(projects) {
 	const projectIDs = [];
 
-	for (let i = 0; i < projects.length; i++) {
+	for (let i = projects.length - 1; i >= 0; i--) {
 		// Update project IDs list
 		projectIDs.push(projects[i].id);
 
