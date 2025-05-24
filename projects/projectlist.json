@@ -11,6 +11,12 @@
 			"thumb": "img/microlr_w_radio.webp",
 			"title": "Micro FPV Quadcopter",
 			"description": "Updating a 4\" FPV Quadcopter for 2025"
+		},
+		{
+			"id": "macpluskbd",
+			"thumb": "img/macplus.webp",
+			"title": "USB to Apple M0110 Keyboard Adapter",
+			"description": "Mimicking an M0110A Keyboard to interface with an Apple Macintosh Plus from the 80s"
 		}
 	]
 }
