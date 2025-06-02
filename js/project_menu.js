@@ -31,7 +31,7 @@ function projectMenuInit(failCallback, alwaysCallback) {
 function buildProjectMenu(projects) {
 	const projectIDs = [];
 
-	for (let i = projects.length - 1; i >= 0; i--) {
+	for (let i = 0; i < projects.length; i++) {
 		// Update project IDs list
 		projectIDs.push(projects[i].id);
 
@@ -54,7 +54,7 @@ function buildProjectMenu(projects) {
 			.append($("<p>").text(projects[i].description)));
 
 		// Append menu item
-		$("#projects").append(project);
+		$("#projects").prepend(project);
 		console.log("project added: " + projects[i].id);
 	}
 
