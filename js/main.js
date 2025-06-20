@@ -13,7 +13,9 @@ const MOBILE_WIDTH = 800; // max width for mobile styling
 const data = {
 	theme: "light",
 	mobile: false,
-	projectIDs: []
+	projectIDs: [],
+	projectsReady: false,
+	photosReady: false,
 };
 
 /*-----------------------------------Setup------------------------------------*/
@@ -31,6 +33,9 @@ function setup() {
 	// Initialize background and cactus
 	sandscapeInit(data.mobile);
 	cactusInit(data.mobile);
+
+	// Initialize focus box
+	focusInit();
 
 	// Window callbacks
 	$(window).on({
@@ -59,9 +64,20 @@ function setup() {
 		function(projectIDs){ // always callback
 			data.projectIDs = projectIDs;
 			attachSounds();
-			// Configure the page content based on the location hash
-			loadPage(location.hash);
-			window.onhashchange = function(){loadPage(location.hash);};
+			data.projectsReady = true;
+			if (data.photosReady) {pageInit();}
+		}
+	);
+
+	// Load photo gallery
+	photoGalleryInit(
+		function(){ // fail callback
+			console.log("no photo manifest");
+			$("#photo-gallery").text("empty for now :(");
+		},
+		function(){ // always callback
+			data.photosReady = true;
+			if (data.projectsReady) {pageInit();}
 		}
 	);
 
@@ -78,6 +94,21 @@ function themeInit() {
 	else localStorage.theme = data.theme;
 	// Configure dark theme if so
 	if (data.theme == "dark") $("html").addClass("dark");
+}
+
+// Initializes the focus box
+function focusInit() {
+	$("#focus").hide();
+	$("#focus").click(function(){$("#focus").hide();});
+	$("body").keydown(function(event){
+		if (event.keyCode == 27) {$("#focus").hide();}
+	});
+}
+
+// Loads page and sets callback
+function pageInit() {
+	loadPage(location.hash);
+	window.onhashchange = function(){loadPage(location.hash);};
 }
 
 // Connects sounds to button events
@@ -107,11 +138,14 @@ function attachSounds() {
 
 // Configures the page and loads the content box based on the location hash
 function loadPage(locHash) {
+	// Hide cactus dialog
+	$("#cactus-dialog").hide();
+
 	// Clear content box
 	$("#content").empty();
 
 	// disable full width content
-	$("#cactus-dialog").removeClass("max");
+	$("#cactus-dialog").removeClass("article");
 
 	// About me page
 	if (locHash == "#aboutme") {
@@ -120,6 +154,7 @@ function loadPage(locHash) {
 		$(".exit-bar").removeClass("hidden");
 		$(".back-btn").hide();
 		$("#projects").hide();
+		$("#photo-gallery").hide();
 		$.get("aboutme.html")
 			.done(function(data){
 				$("#content").html(data);
@@ -128,7 +163,10 @@ function loadPage(locHash) {
 				console.log("failed to load aboutme.html");
 				$("#content").text("strange... I have nothing to show.");
 			})
-			.always(cactusOnPageChange);
+			.always(function(){
+				$("#cactus-dialog").show();
+				cactusOnPageChange();
+			});
 
 	// Projects page
 	} else if (locHash == "#projects") {
@@ -137,6 +175,7 @@ function loadPage(locHash) {
 		$(".exit-bar").removeClass("hidden");
 		$(".back-btn").hide();
 		$("#projects").show();
+		$("#photo-gallery").hide();
 		$.get("projects.html")
 			.done(function(data){
 				$("#content").html(data);
@@ -145,7 +184,31 @@ function loadPage(locHash) {
 				console.log("failed to load projects.html");
 				$("#content").text("strange... I have nothing to show.");
 			})
-			.always(cactusOnPageChange);
+			.always(function(){
+				$("#cactus-dialog").show();
+				cactusOnPageChange();
+			});
+
+	// Gallery page
+	} else if (locHash == "#photos") {
+		$(".welcome").hide();
+		$(".subpage").show();
+		$(".exit-bar").removeClass("hidden");
+		$(".back-btn").hide();
+		$("#projects").hide();
+		$("#photo-gallery").show();
+		$.get("photos.html")
+			.done(function(data){
+				$("#content").html(data);
+			})
+			.fail(function(){
+				console.log("failed to load gallery.html");
+				$("#content").text("strange... I have nothing to show.");
+			})
+			.always(function(){
+				$("#cactus-dialog").show();
+				cactusOnPageChange();
+			});
 
 	// Links page
 	} else if (locHash == "#links") {
@@ -154,6 +217,7 @@ function loadPage(locHash) {
 		$(".exit-bar").removeClass("hidden");
 		$(".back-btn").hide();
 		$("#projects").hide();
+		$("#photo-gallery").hide();
 		$.get("links.html")
 			.done(function(data){
 				$("#content").html(data);
@@ -168,7 +232,10 @@ function loadPage(locHash) {
 				console.log("failed to load links.html");
 				$("#content").text("strange... I have nothing to show.");
 			})
-			.always(cactusOnPageChange);
+			.always(function(){
+				$("#cactus-dialog").show();
+				cactusOnPageChange();
+			});
 
 	// Contact page
 	} else if (locHash == "#contact") {
@@ -177,6 +244,7 @@ function loadPage(locHash) {
 		$(".exit-bar").removeClass("hidden");
 		$(".back-btn").hide();
 		$("#projects").hide();
+		$("#photo-gallery").hide();
 		$.get("contact.html")
 			.done(function(data){
 				$("#content").html(data);
@@ -185,7 +253,10 @@ function loadPage(locHash) {
 				console.log("failed to load contact.html");
 				$("#content").text("strange... I have nothing to show.");
 			})
-			.always(cactusOnPageChange);
+			.always(function(){
+				$("#cactus-dialog").show();
+				cactusOnPageChange();
+			});
 
 	} else {
 		// Load project
@@ -197,20 +268,25 @@ function loadPage(locHash) {
 			$(".back-btn").attr("href", "#projects");
 			$(".back-btn").show();
 			$("#projects").hide();
+			$("#photo-gallery").hide();
 			const path = PROJECT_DIR + projectID + "/";
 			$.get(path + projectID + ".md")
 				.done(function(data){
 					$("#content").html(marked.parse(data));
-					$("#cactus-dialog").addClass("max"); // full width content
+					$("#cactus-dialog").addClass("article"); // full width content
 					fixContentPaths(path);
 					fixContentLinks();
 					highlightContent();
+					focusableImages();
 				})
 				.fail(function(){
 					console.log("failed to load " + projectID + ".md");
 					$("#content").text("strange.. I have nothing to show.");
 				})
-				.always(cactusOnPageChange);
+				.always(function(){
+					$("#cactus-dialog").show();
+					cactusOnPageChange();
+				});
 
 		// Default to welcome page
 		} else {
@@ -218,6 +294,7 @@ function loadPage(locHash) {
 			$(".subpage").hide();
 			$(".exit-bar").addClass("hidden");
 			$("#projects").hide();
+			$("#photo-gallery").hide();
 			$.get("welcome.html")
 				.done(function(data){
 					$("#content").html(data);
@@ -226,7 +303,10 @@ function loadPage(locHash) {
 					console.log("failed to load welcome.html");
 					$("#content").text("strange... I have nothing to show.");
 				})
-				.always(cactusOnPageChange);
+				.always(function(){
+					$("#cactus-dialog").show();
+					cactusOnPageChange();
+				});
 		}
 	}
 }
@@ -253,6 +333,18 @@ function fixContentLinks() {
 function highlightContent() {
 	$("#content code").each(function(){
 		hljs.highlightElement($(this)[0]);
+	});
+}
+
+// Allows images to be focused on click
+function focusableImages() {
+	$("#content img").each(function(){
+		$(this).click(function(){
+			$("#focus")
+				.empty()
+				.append($("<img>").attr("src", $(this).attr("src")))
+				.show();
+		});
 	});
 }
 

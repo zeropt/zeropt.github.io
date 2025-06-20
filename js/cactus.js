@@ -28,7 +28,7 @@ function cactusOnResize(mobile) {
 function cactusOnScroll() {moveCactus();}
 
 // Runs when the subpage changes
-function cactusOnPageChange() {animateCactus();}
+function cactusOnPageChange() {moveCactus();}
 
 /*----------------------------- Script Functions -----------------------------*/
 
@@ -38,25 +38,6 @@ function moveCactus() {
 	$("#cactus").css({
 		"top": position.top + "px",
 		"left": position.left + "px",
-	});
-}
-
-// Animate the cactus and dialog box for when loading new content
-function animateCactus() {
-	$("#content").parent().show(0, function(){
-		const endPosition = cactusPosition();
-		$("#content").parent().hide(0, function(){
-			const startPosition = cactusPosition();
-			$("#cactus").css({
-				"top": startPosition.top + "px",
-				"left": startPosition.left + "px",
-			});
-			$("#content").parent().show(200);
-			$("#cactus").animate({
-					"top": endPosition.top + "px",
-					"left": endPosition.left + "px",
-				}, 200);
-		});
 	});
 }
 
