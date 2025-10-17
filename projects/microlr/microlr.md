@@ -145,7 +145,7 @@ Now for the aspects the didn't quite reach or partially reached the goal: I have
 
 The final undefined and ongoing goal of the update is improving the portability of all my gear. I was always envious of the small bags able to carry the gear for the DJI Mini line. I didn't expect to achieve that level of portability since FPV drones additionally require a set of FPV goggles but low-profile goggle antennas and a small radio help to approach that target. One of the reasons for switching to ExpressLRS was to take advantage of small radios like the RadioMaster Pocket.
 
-I love the small size of the Pocket but one disadvantage is the 250 mW maximum output power of the built-in ELRS module. In my flights so far, the HDZero Freestyle VTX acts somewhat similar to the old analog VTX I used and I haven't been able to thoroughly test whether or not the control link can out compete the video signal. I one flight I conducted, I encountered RXLOSS warnings before losing video that did not inspire confidence. Regardless, I still intend to stick with the Pocket for the sake of portability.
+I love the small size of the Pocket but one disadvantage is the 250 mW maximum output power of the built-in ELRS module. In my flights so far, the HDZero Freestyle VTX acts somewhat similar to the old analog VTX I used and I haven't been able to thoroughly test whether or not the control link can out compete the video signal. In one flight I conducted, I encountered RXLOSS warnings before losing video that did not inspire confidence. Regardless, I still intend to stick with the Pocket for the sake of portability.
 
 <br>
 
