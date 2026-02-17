@@ -1,17 +1,13 @@
 # Fonts Used
 
-**Jersey 10:**
+**Pixellari:**
 
-Designed by Sarah Cadigan-Fried
+Designed by Zacchary Dempsey-Plante
 
-`Jersey10-Regular.ttf` was downloaded from Google Fonts.
+[Pixellari Download](https://github.com/zedseven/Pixellari)
 
-[Jersey 10](https://fonts.google.com/specimen/Jersey+10)
+**LanaPixel:**
 
-**Simple Script:**
+Created by eishiya
 
-Created by VEXED
-
-`Simple_Script_Wide_Lowers.ttf` was purchased as part of an asset pack. I will link the pack below if you want to purchase it and/or support the creator.
-
-[Simple Script - 8x8 Pixel Font by VEXED](https://v3x3d.itch.io/simple-script)
+[LanaPixel Download](https://fontstruct.com/fontstructions/show/353229/lanapixel)
