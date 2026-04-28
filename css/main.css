@@ -55,9 +55,9 @@
 }
 
 @font-face {
-	font-family: LanaPixel;
-	src: url("font/LanaPixel/LanaPixel.ttf");
-	size-adjust: 240%;
+	font-family: Silver;
+	src: url("font/Silver/Silver.ttf");
+	size-adjust: 220%;
 }
 
 html {
@@ -68,8 +68,9 @@ html {
 body {
 	height: 100%;
 	margin: 0;
-	font-family: LanaPixel, sans-serif;
+	font-family: Silver, sans-serif;
 	font-size: 0.75rem;
+	line-height: 200%;
 	border-color: var(--border-color);
 	color: var(--text-color);
 }
@@ -78,6 +79,7 @@ h1, h2, h3, h4, h5, h6 {
 	margin: 0.25em 0;
 	font-family: Pixellari, sans-serif;
 	font-weight: normal;
+	line-height: normal;
 	color: var(--heading-color);
 }
 
@@ -268,7 +270,7 @@ pre code {
 	margin: 4px 0;
 	border: 12px solid transparent;
 	border-image: url("img/button_border.webp") 12 round;
-	padding: 8px 4px 0 4px;
+	padding: 12px 4px 0 4px;
 	background-color: var(--button-color);
 	background-clip: padding-box;
 	font-family: inherit;

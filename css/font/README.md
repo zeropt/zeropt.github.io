@@ -6,8 +6,10 @@ Designed by Zacchary Dempsey-Plante
 
 [Pixellari Download](https://github.com/zedseven/Pixellari)
 
-**LanaPixel:**
+**Silver:**
 
-Created by eishiya
+Created by Poppy Works, Wolfgang Wozniak
 
-[LanaPixel Download](https://fontstruct.com/fontstructions/show/353229/lanapixel)
+Use the link below download from and support the creators.
+
+[Silver Download](https://poppyworks.itch.io/silver)
