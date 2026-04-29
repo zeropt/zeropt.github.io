@@ -279,13 +279,13 @@ pre code {
 }
 
 .button:hover {
-	padding-top: 4px;
+	padding-top: 8px;
 	padding-bottom: 4px;
 	border-image-source: url("img/button_border_raised.webp");
 }
 
 .button:active {
-	padding-top: 8px;
+	padding-top: 12px;
 	padding-bottom: 0;
 	border-image-source: url("img/button_border.webp");
 }
